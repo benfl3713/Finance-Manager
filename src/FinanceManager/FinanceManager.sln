@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceManager", "FinanceManager\FinanceManager.csproj", "{AB40DCBF-1945-4F70-B7E4-D5F9238E4022}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceManager", "FinanceManager\FinanceManager.csproj", "{C012612B-5087-43FF-B1BE-6A6835DB4D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB40DCBF-1945-4F70-B7E4-D5F9238E4022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB40DCBF-1945-4F70-B7E4-D5F9238E4022}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB40DCBF-1945-4F70-B7E4-D5F9238E4022}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB40DCBF-1945-4F70-B7E4-D5F9238E4022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C012612B-5087-43FF-B1BE-6A6835DB4D08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C012612B-5087-43FF-B1BE-6A6835DB4D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C012612B-5087-43FF-B1BE-6A6835DB4D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C012612B-5087-43FF-B1BE-6A6835DB4D08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C8FBA7B1-B946-40C1-8B4E-9688132EE16A}
+		SolutionGuid = {24076A15-2302-4F01-9655-12E226723F8D}
 	EndGlobalSection
 EndGlobal

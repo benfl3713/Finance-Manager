@@ -1,0 +1,41 @@
+<div class="login-container">
+  <div class="login-background"></div>
+  <mat-card class="login-card">
+    <mat-progress-bar
+      mode="indeterminate"
+      color="primary"
+      *ngIf="loadingBar"
+    ></mat-progress-bar>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <h1 class="title">Finance Manager</h1>
+        <mat-hint>Welcome, To get started please login</mat-hint>
+        <br /><br />
+
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input type="text" matInput required formControlName="username" />
+          <mat-error>Username Required</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput required formControlName="password" />
+          <mat-error>Password Required</mat-error>
+        </mat-form-field>
+        <br />
+        <button
+          id="login-submit"
+          mat-flat-button
+          type="submit"
+          color="primary"
+          [disabled]="!loginForm.valid || loginForm.disabled"
+        >
+          Login
+        </button>
+        <button mat-button type="button">Register</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

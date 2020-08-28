@@ -1,0 +1,63 @@
+.title {
+  margin-top: 10px;
+  color: black;
+}
+
+.login-card {
+  max-width: 600px;
+  min-width: 350px;
+
+  text-align: center;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 2;
+  padding: 0;
+  opacity: 0.98;
+}
+
+mat-progress-bar {
+  z-index: 5;
+  position: absolute;
+}
+
+mat-card-content {
+  padding: 25px;
+}
+
+.login-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-background {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: url(/city.jpg) no-repeat;
+  /* filter: blur(5px); */
+  z-index: 1;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+mat-form-field,
+button {
+  width: 100%;
+}
+
+#login-submit {
+  margin-top: 10px;
+}
+
+#login-submit:disabled {
+  cursor: not-allowed;
+}
