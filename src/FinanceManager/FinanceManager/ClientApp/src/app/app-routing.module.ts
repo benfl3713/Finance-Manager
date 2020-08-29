@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './Guards/auth.guard';
 import { NavigationComponent } from './Navigation/navigation.component';
 import { LoginComponent } from './Pages/login/login.component';
+import { RegisterComponent } from './Pages/register/register.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 
 const authorisedRoutes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     children: authorisedRoutes,
   },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '**', redirectTo: '' },
 ];
 

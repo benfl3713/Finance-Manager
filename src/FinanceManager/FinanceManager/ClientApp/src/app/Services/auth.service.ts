@@ -20,4 +20,10 @@ export class AuthService {
       .post<string>(`${FinanceApiRequest.BASE_URL}auth/authenticate`, body)
       .pipe(catchError(() => of(null)));
   }
+
+  register(formValues: any): Observable<string> {
+    return this.http
+      .post<string>(`${FinanceApiRequest.BASE_URL}client`, formValues)
+      .pipe(catchError(() => of(null)));
+  }
 }

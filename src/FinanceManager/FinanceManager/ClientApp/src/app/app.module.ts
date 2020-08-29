@@ -11,6 +11,7 @@ import { LoginComponent } from './Pages/login/login.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { ServiceModule } from './Services/service.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './Pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     LoginComponent,
     DashboardComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
