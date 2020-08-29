@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './Components/material.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavigationComponent } from './Navigation/navigation.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
+import { ServiceModule } from './Services/service.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
+    ServiceModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
