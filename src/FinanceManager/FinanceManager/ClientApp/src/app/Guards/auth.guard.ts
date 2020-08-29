@@ -6,6 +6,7 @@ import {
   Router,
 } from '@angular/router';
 import { FinanceApiRequest } from '../Services/finance-api.request.service';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
@@ -13,8 +14,18 @@ export class AuthGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (FinanceApiRequest.Token) {
+      const token = jwt_decode(FinanceApiRequest.Token);
+      const expirary = new Date(token.exp * 1000);
+      if (expirary < new Date()) {
+        return this.denyAccess();
+      }
+
       return true;
     }
+    return this.denyAccess();
+  }
+
+  denyAccess(): boolean {
     this.router.navigate(['login']);
     return false;
   }

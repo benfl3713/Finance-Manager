@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   loadingBar: boolean = false;
+  error: string;
 
   loginForm = new FormGroup({
     username: new FormControl(null, [Validators.required]),
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   login(): void {
+    this.error = null;
     this.loginForm.disable();
     this.loadingBar = true;
 
@@ -29,10 +31,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: (token) => {
+        console.log(token);
         if (token) {
           FinanceApiRequest.setToken(token);
           this.router.navigate(['']);
         }
+        this.error = 'Username or Password Invalid';
       },
       complete: () => {
         this.loginForm.enable();

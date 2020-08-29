@@ -14,7 +14,10 @@ export class FinanceApiRequest {
   }
 
   public static setToken(token: string): void {
-    return localStorage.setItem('id_token', token);
+    if (token) {
+      return localStorage.setItem('id_token', token);
+    }
+    return localStorage.removeItem('id_token');
   }
 
   public get<T>(url: string, queryParams?: Params): Observable<T> {

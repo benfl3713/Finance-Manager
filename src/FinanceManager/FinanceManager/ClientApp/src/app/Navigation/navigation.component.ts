@@ -3,6 +3,8 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
+import { FinanceApiRequest } from '../Services/finance-api.request.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -14,7 +16,10 @@ export class NavigationComponent {
   IsMobile: boolean = false;
   LoadingBar = false;
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router
+  ) {}
   @ViewChild(MatSidenav, { static: false }) public sidenav: MatSidenav;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -27,9 +32,14 @@ export class NavigationComponent {
 
   ngOnInit(): void {}
 
-  PageChanged() {
+  PageChanged(): void {
     if (this.IsMobile === true) {
       this.sidenav.close();
     }
+  }
+
+  LogOut(): void {
+    FinanceApiRequest.setToken(null);
+    this.router.navigate(['login']);
   }
 }
