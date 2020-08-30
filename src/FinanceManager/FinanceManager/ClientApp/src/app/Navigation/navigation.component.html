@@ -61,6 +61,22 @@
         (click)="PageChanged()"
         ><span class="fas fa-home"></span> Dashboard</a
       >
+      <a
+        mat-list-item
+        class="menu-item"
+        [routerLink]="['/accounts']"
+        [routerLinkActive]="['link-active']"
+        (click)="PageChanged()"
+        ><span class="fas fa-user"></span> Accounts</a
+      >
+      <a
+        mat-list-item
+        class="menu-item"
+        [routerLink]="['/transactions']"
+        [routerLinkActive]="['link-active']"
+        (click)="PageChanged()"
+        ><span class="fas fa-money-check-alt"></span> Transactions</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 

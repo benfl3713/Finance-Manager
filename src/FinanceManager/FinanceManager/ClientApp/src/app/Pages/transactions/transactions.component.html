@@ -1,0 +1,77 @@
+<table mat-table [dataSource]="transactions | async" class="mat-elevation-z8">
+  <ng-container matColumnDef="logo">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let transaction">
+      <img
+        [src]="transaction.Logo || 'defaultTransaction.png'"
+        class="transaction-logo"
+      />
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.Date | date: "dd-MM-yyyy"
+      }}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="account">
+    <th mat-header-cell *matHeaderCellDef>Account</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.AccountID
+      }}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef>Amount</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.Amount | currency: transaction.Currency
+      }}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="vendor">
+    <th mat-header-cell *matHeaderCellDef>Vendor</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.Vendor
+      }}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="category">
+    <th mat-header-cell *matHeaderCellDef>Category</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.Category
+      }}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="merchant">
+    <th mat-header-cell *matHeaderCellDef>Merchant</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.Merchant
+      }}</a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Type</th>
+    <td mat-cell *matCellDef="let transaction">
+      <a [routerLink]="['/transactions', transaction.ID]">{{
+        transaction.Type
+      }}</a>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

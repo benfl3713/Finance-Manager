@@ -5,11 +5,21 @@ import { NavigationComponent } from './Navigation/navigation.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { RegisterComponent } from './Pages/register/register.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
+import { AccountsComponent } from './Pages/accounts/accounts.component';
+import { TransactionsComponent } from './Pages/transactions/transactions.component';
 
 const authorisedRoutes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+  },
+  {
+    path: 'accounts',
+    component: AccountsComponent,
+  },
+  {
+    path: 'transactions',
+    component: TransactionsComponent,
   },
 ];
 

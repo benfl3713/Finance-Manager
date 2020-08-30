@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: (token) => {
-        console.log(token);
         if (token) {
           FinanceApiRequest.setToken(token);
           this.router.navigate(['']);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Params } from '@angular/router';
 
@@ -23,24 +23,35 @@ export class FinanceApiRequest {
   public get<T>(url: string, queryParams?: Params): Observable<T> {
     return this.http.get<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
       params: queryParams,
+      headers: this.authHeader,
     });
   }
 
   public post<T>(url: string, body: any, queryParams?: Params): Observable<T> {
     return this.http.post<T>(`${FinanceApiRequest.BASE_URL}${url}`, body, {
       params: queryParams,
+      headers: this.authHeader,
     });
   }
 
   public put<T>(url: string, body: any, queryParams?: Params): Observable<T> {
     return this.http.put<T>(`${FinanceApiRequest.BASE_URL}${url}`, body, {
       params: queryParams,
+      headers: this.authHeader,
     });
   }
 
   public delete<T>(url: string, queryParams?: Params): Observable<T> {
     return this.http.delete<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
       params: queryParams,
+      headers: this.authHeader,
     });
+  }
+
+  get authHeader(): HttpHeaders {
+    return new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${FinanceApiRequest.Token}`
+    );
   }
 }

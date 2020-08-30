@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, DEFAULT_CURRENCY_CODE } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { ServiceModule } from './Services/service.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './Pages/register/register.component';
+import { AccountsComponent } from './Pages/accounts/accounts.component';
+import { TransactionsComponent } from './Pages/transactions/transactions.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { RegisterComponent } from './Pages/register/register.component';
     LoginComponent,
     DashboardComponent,
     RegisterComponent,
+    AccountsComponent,
+    TransactionsComponent,
   ],
   imports: [
     BrowserModule,

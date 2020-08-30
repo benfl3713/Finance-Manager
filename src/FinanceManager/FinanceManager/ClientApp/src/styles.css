@@ -12,3 +12,9 @@ body {
 button:disabled {
   cursor: not-allowed;
 }
+
+.transaction-logo {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
