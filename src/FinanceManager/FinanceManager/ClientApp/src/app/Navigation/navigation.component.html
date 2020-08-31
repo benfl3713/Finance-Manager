@@ -77,6 +77,14 @@
         (click)="PageChanged()"
         ><span class="fas fa-money-check-alt"></span> Transactions</a
       >
+      <a
+        mat-list-item
+        class="menu-item"
+        (click)="PageChanged()"
+        [routerLinkActive]="['link-active']"
+        matTooltip="Future Feature to be Implemented"
+        ><span class="fas fa-funnel-dollar"></span> Budgets</a
+      >
     </mat-nav-list>
   </mat-sidenav>
 
