@@ -7,6 +7,7 @@ import { RegisterComponent } from './Pages/register/register.component';
 import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AccountsComponent } from './Pages/accounts/accounts.component';
 import { TransactionsComponent } from './Pages/transactions/transactions.component';
+import { AccountDetailsComponent } from './Pages/account-details/account-details.component';
 
 const authorisedRoutes: Routes = [
   {
@@ -20,6 +21,10 @@ const authorisedRoutes: Routes = [
   {
     path: 'transactions',
     component: TransactionsComponent,
+  },
+  {
+    path: 'account/:id',
+    component: AccountDetailsComponent,
   },
 ];
 

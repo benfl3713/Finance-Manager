@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './Pages/register/register.component';
 import { AccountsComponent } from './Pages/accounts/accounts.component';
 import { TransactionsComponent } from './Pages/transactions/transactions.component';
+import { AccountDetailsComponent } from './Pages/account-details/account-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { TransactionsComponent } from './Pages/transactions/transactions.compone
     RegisterComponent,
     AccountsComponent,
     TransactionsComponent,
+    AccountDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,7 @@ import { TransactionsComponent } from './Pages/transactions/transactions.compone
     ServiceModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: DEFAULT_CURRENCY_CODE, useValue: 'GBP' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

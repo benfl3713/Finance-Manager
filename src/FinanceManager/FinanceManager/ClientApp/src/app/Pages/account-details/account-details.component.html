@@ -1,0 +1,30 @@
+<div *ngIf="account$ | async; let account">
+  <h1 id="account-name">{{ account.AccountName }}</h1>
+  <div class="row">
+    <mat-card class="col-md-3 col-sm-12 available-balance mat-elevation-z1">
+      <mat-card-content>Available Balance</mat-card-content>
+      <mat-card-title>{{
+        account.AvailableBalance | currency: account.BaseCurrency
+      }}</mat-card-title>
+    </mat-card>
+    <mat-card class="col-md-3 col-sm-12 pending-balance mat-elevation-z1">
+      <mat-card-content>Pending Balance</mat-card-content>
+      <mat-card-title>{{
+        account.PendingBalance | currency: account.BaseCurrency
+      }}</mat-card-title>
+    </mat-card>
+    <mat-card class="col-md-3 col-sm-12 spent-this-week mat-elevation-z1">
+      <mat-card-content>Spent This Week</mat-card-content>
+      <mat-card-title>{{
+        account.PendingBalance | currency: account.BaseCurrency
+      }}</mat-card-title>
+    </mat-card>
+    <mat-card class="col-md-3 col-sm-12 top-categories mat-elevation-z1">
+      <mat-card-content>Top Categories</mat-card-content>
+      <mat-card-title>Do later</mat-card-title>
+    </mat-card>
+  </div>
+
+  <h2 class="transactions-section">Account Transactions:</h2>
+  <app-transactions-table [account]="account.ID"></app-transactions-table>
+</div>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FinanceApiRequest } from './finance-api.request.service';
 import { Observable } from 'rxjs';
+import { Params } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,5 +11,12 @@ export class TransactionsService {
 
   getTransactions(): Observable<any[]> {
     return this.financeApi.get<any[]>('transactions');
+  }
+
+  getTransactionsByAccountId(accountId: string): Observable<any[]> {
+    var queryParams: Params = {
+      accountId: accountId,
+    };
+    return this.financeApi.get<any[]>('transactions', queryParams);
   }
 }

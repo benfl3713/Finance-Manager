@@ -11,4 +11,8 @@ export class AccountsService {
   getAccounts(): Observable<any[]> {
     return this.financeApi.get<any[]>('accounts');
   }
+
+  getAccountById(id: string): Observable<any> {
+    return this.financeApi.get<any>(`account/${id}`);
+  }
 }

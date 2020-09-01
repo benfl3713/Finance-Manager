@@ -1,0 +1,24 @@
+.available-balance {
+  border-bottom: 4px solid lightgreen;
+}
+
+.pending-balance {
+  border-bottom: 4px solid lightskyblue;
+}
+
+.spent-this-week {
+  border-bottom: 4px solid lightcoral;
+}
+
+.top-categories {
+  border-bottom: 4px solid purple;
+}
+
+.transactions-section {
+  margin-top: 25px;
+}
+
+#account-name {
+  margin-top: 20px;
+  font-size: 36px;
+}

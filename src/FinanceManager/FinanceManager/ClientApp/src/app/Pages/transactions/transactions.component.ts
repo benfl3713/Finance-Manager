@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TransactionsService } from '../../Services/transactions.service';
 
 @Component({
@@ -9,7 +9,9 @@ import { TransactionsService } from '../../Services/transactions.service';
 export class TransactionsComponent implements OnInit {
   constructor(private transactionsService: TransactionsService) {}
 
-  transactions = this.transactionsService.getTransactions();
+  @Input() account: string;
+
+  transactions;
   displayedColumns: string[] = [
     'logo',
     'date',
@@ -21,5 +23,9 @@ export class TransactionsComponent implements OnInit {
     'type',
   ];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.transactions = this.account
+      ? this.transactionsService.getTransactionsByAccountId(this.account)
+      : this.transactionsService.getTransactions();
+  }
 }
