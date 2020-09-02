@@ -2,7 +2,7 @@
 
 Personal Finance Manager Web App
 
-![](https://github.com/benfl3713/DepartureBoard/blob/master/src/FinanceManager/FinanceManager/wwwroot/preview.png?raw=true)
+![](https://github.com/benfl3713/Finance-Manager/blob/master/src/FinanceManager/FinanceManager/wwwroot/preview.png?raw=true)
 
 # Purpose
 
