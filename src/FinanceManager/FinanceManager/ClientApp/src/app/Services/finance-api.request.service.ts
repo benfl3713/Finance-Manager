@@ -59,9 +59,8 @@ export class FinanceApiRequest {
   }
 
   get authHeader(): HttpHeaders {
-    return new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${FinanceApiRequest.Token}`
-    );
+    return new HttpHeaders()
+      .set('Authorization', `Bearer ${FinanceApiRequest.Token}`)
+      .append('Content-Type', 'application/json');
   }
 }

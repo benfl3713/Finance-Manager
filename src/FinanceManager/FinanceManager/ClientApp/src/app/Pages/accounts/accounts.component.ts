@@ -21,7 +21,7 @@ export class AccountsComponent implements OnInit {
       )
     );
 
-  displayedColumns: string[] = ['name', 'availablebalance', 'pendingbalance'];
+  displayedColumns: string[] = ['name', 'currentbalance', 'availablebalance'];
 
   ngOnInit(): void {
     this.loadingService.add({ key: ['default', 'accounts-table'] });

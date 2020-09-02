@@ -1,21 +1,29 @@
 <div *ngIf="account$ | async; let account">
   <h1 id="account-name">{{ account.AccountName }}</h1>
+  <div style="margin-bottom: 10px">
+    <button mat-stroked-button color="primary" style="margin-right: 5px">
+      Rename
+    </button>
+    <button mat-stroked-button color="warn" (click)="delete(account.ID)">
+      Delete
+    </button>
+  </div>
   <div
     fxLayout="row"
     fxLayout.xs="column"
     fxLayoutGap="10px"
     fxLayoutAlign="center"
   >
+    <mat-card class="current-balance mat-elevation-z3" fxFlex="25%">
+      <mat-card-content>Current Balance</mat-card-content>
+      <mat-card-title>{{
+        account.CurrentBalance | currency: account.BaseCurrency
+      }}</mat-card-title>
+    </mat-card>
     <mat-card class="available-balance mat-elevation-z3" fxFlex="25%">
       <mat-card-content>Available Balance</mat-card-content>
       <mat-card-title>{{
         account.AvailableBalance | currency: account.BaseCurrency
-      }}</mat-card-title>
-    </mat-card>
-    <mat-card class="pending-balance mat-elevation-z3" fxFlex="25%">
-      <mat-card-content>Pending Balance</mat-card-content>
-      <mat-card-title>{{
-        account.PendingBalance | currency: account.BaseCurrency
       }}</mat-card-title>
     </mat-card>
     <mat-card class="spent-this-week mat-elevation-z3" fxFlex="25%">

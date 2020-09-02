@@ -22,6 +22,20 @@
   <span class="short-text">Finance Manager</span>
   <span class="fill-remaining-space"></span>
 
+  <button mat-icon-button [matMenuTriggerFor]="addMenu" aria-label="add-menu">
+    <mat-icon>add</mat-icon>
+  </button>
+  <mat-menu #addMenu="matMenu">
+    <button mat-menu-item [routerLink]="['/add/account']">
+      <span class="fas fa-user"></span>
+      <span>Add New Account</span>
+    </button>
+    <button mat-menu-item [routerLink]="['/add/transaction']">
+      <span class="fas fa-money-check-alt"></span>
+      <span>Add New Transaction</span>
+    </button>
+  </mat-menu>
+
   <button mat-icon-button [matMenuTriggerFor]="toolMenu" aria-label="tool-menu">
     <mat-icon>more_vert</mat-icon>
   </button>

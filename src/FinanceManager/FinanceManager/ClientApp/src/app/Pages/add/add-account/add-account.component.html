@@ -1,0 +1,24 @@
+<h1>Add Account</h1>
+<form [formGroup]="accountForm" ngNativeValidate>
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input type="text" matInput required formControlName="accountName" />
+    <mat-error>Name Required</mat-error>
+  </mat-form-field>
+  <br />
+
+  <div class="row">
+    <button
+      (click)="save()"
+      class="col-md-1 col-sm-12"
+      mat-flat-button
+      color="primary"
+      [disabled]="!accountForm.valid"
+    >
+      Save
+    </button>
+    <button (click)="cancel()" class="col-md-1 col-sm-12" mat-stroked-button>
+      Cancel
+    </button>
+  </div>
+</form>

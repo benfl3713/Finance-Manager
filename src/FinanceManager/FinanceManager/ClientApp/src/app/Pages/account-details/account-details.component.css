@@ -1,8 +1,8 @@
-.available-balance {
+.current-balance {
   border-bottom: 4px solid lightgreen;
 }
 
-.pending-balance {
+.available-balance {
   border-bottom: 4px solid lightskyblue;
 }
 

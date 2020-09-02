@@ -6,20 +6,20 @@
     </td>
   </ng-container>
 
+  <ng-container matColumnDef="currentbalance">
+    <th mat-header-cell *matHeaderCellDef>Current Balance</th>
+    <td mat-cell *matCellDef="let account">
+      <a [routerLink]="['/account', account.ID]">{{
+        account.CurrentBalance | currency: account.BaseCurrency
+      }}</a>
+    </td>
+  </ng-container>
+
   <ng-container matColumnDef="availablebalance">
     <th mat-header-cell *matHeaderCellDef>Available Balance</th>
     <td mat-cell *matCellDef="let account">
       <a [routerLink]="['/account', account.ID]">{{
         account.AvailableBalance | currency: account.BaseCurrency
-      }}</a>
-    </td>
-  </ng-container>
-
-  <ng-container matColumnDef="pendingbalance">
-    <th mat-header-cell *matHeaderCellDef>Pending Balance</th>
-    <td mat-cell *matCellDef="let account">
-      <a [routerLink]="['/account', account.ID]">{{
-        account.PendingBalance | currency: account.BaseCurrency
       }}</a>
     </td>
   </ng-container>

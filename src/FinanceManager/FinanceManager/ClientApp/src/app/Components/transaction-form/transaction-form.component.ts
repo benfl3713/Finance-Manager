@@ -26,11 +26,13 @@ export class TransactionFormComponent implements OnInit {
       Validators.required,
     ]),
     amount: new FormControl(null, [Validators.required]),
-    currency: new FormControl(null, [Validators.required]),
+    currency: new FormControl('GBP', [Validators.required]),
+    status: new FormControl('SETTLED', [Validators.required]),
     type: new FormControl(null),
     vendor: new FormControl(null),
     category: new FormControl(null),
     merchant: new FormControl(null),
+    note: new FormControl(null),
   });
 
   accounts$ = this.accountsService.getAccounts().pipe(
@@ -54,10 +56,12 @@ export class TransactionFormComponent implements OnInit {
       });
       this.transactionForm.controls.amount.setValue(transaction.Amount);
       this.transactionForm.controls.currency.setValue(transaction.Currency);
+      this.transactionForm.controls.status.setValue(transaction.Status);
       this.transactionForm.controls.type.setValue(transaction.Type);
       this.transactionForm.controls.vendor.setValue(transaction.Vendor);
       this.transactionForm.controls.category.setValue(transaction.Category);
       this.transactionForm.controls.merchant.setValue(transaction.Merchant);
+      this.transactionForm.controls.note.setValue(transaction.Note);
     } catch (ex) {
       console.log(ex);
     }
@@ -80,7 +84,7 @@ export class TransactionFormComponent implements OnInit {
     if (window.history.length > 0) {
       window.history.back();
     } else {
-      this.router.navigate(['/']);
+      this.router.navigate(['/transactions']);
     }
   }
 

@@ -15,4 +15,12 @@ export class AccountsService {
   getAccountById(id: string): Observable<any> {
     return this.financeApi.get<any>(`account/${id}`);
   }
+
+  addNewAccount(account: any) {
+    return this.financeApi.post<void>(`account`, JSON.stringify(account));
+  }
+
+  deleteAccount(accountId: string) {
+    return this.financeApi.delete<any>(`account/${accountId}`);
+  }
 }

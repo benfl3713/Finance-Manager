@@ -25,6 +25,8 @@ import { FinanceApiRequest } from './Services/finance-api.request.service';
 import { TransactionDetailsComponent } from './Pages/transaction-details/transaction-details.component';
 import { DatePipe } from '@angular/common';
 import { ComponentModule } from './Components/component.module';
+import { AddAccountComponent } from './Pages/add/add-account/add-account.component';
+import { AddTransactionComponent } from './Pages/add/add-transaction/add-transaction.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { ComponentModule } from './Components/component.module';
     TransactionsComponent,
     AccountDetailsComponent,
     TransactionDetailsComponent,
+    AddAccountComponent,
+    AddTransactionComponent,
   ],
   imports: [
     BrowserModule,

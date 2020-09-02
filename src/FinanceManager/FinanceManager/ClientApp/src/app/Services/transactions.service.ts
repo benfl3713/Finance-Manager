@@ -23,4 +23,8 @@ export class TransactionsService {
   getTransactionById(transactionId: string): Observable<any> {
     return this.financeApi.get<any[]>(`transaction/${transactionId}`);
   }
+
+  addTransaction(transaction: any): Observable<void> {
+    return this.financeApi.post('transaction', JSON.stringify(transaction));
+  }
 }
