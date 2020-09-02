@@ -1,27 +1,30 @@
 <div *ngIf="account$ | async; let account">
   <h1 id="account-name">{{ account.AccountName }}</h1>
-  <div class="row">
-    <mat-card class="col-md-3 col-sm-12 available-balance mat-elevation-z1">
+  <div
+    fxLayout="row"
+    fxLayout.xs="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="center"
+  >
+    <mat-card class="available-balance mat-elevation-z3" fxFlex="25%">
       <mat-card-content>Available Balance</mat-card-content>
       <mat-card-title>{{
         account.AvailableBalance | currency: account.BaseCurrency
       }}</mat-card-title>
     </mat-card>
-    <mat-card class="col-md-3 col-sm-12 pending-balance mat-elevation-z1">
+    <mat-card class="pending-balance mat-elevation-z3" fxFlex="25%">
       <mat-card-content>Pending Balance</mat-card-content>
       <mat-card-title>{{
         account.PendingBalance | currency: account.BaseCurrency
       }}</mat-card-title>
     </mat-card>
-    <mat-card class="col-md-3 col-sm-12 spent-this-week mat-elevation-z1">
+    <mat-card class="spent-this-week mat-elevation-z3" fxFlex="25%">
       <mat-card-content>Spent This Week</mat-card-content>
-      <mat-card-title>{{
-        account.PendingBalance | currency: account.BaseCurrency
-      }}</mat-card-title>
+      <mat-card-title>{{ 0 | currency: account.BaseCurrency }}</mat-card-title>
     </mat-card>
-    <mat-card class="col-md-3 col-sm-12 top-categories mat-elevation-z1">
+    <mat-card class="top-categories mat-elevation-z3" fxFlex="25%">
       <mat-card-content>Top Categories</mat-card-content>
-      <mat-card-title>Do later</mat-card-title>
+      <mat-card-title>Coming Soon</mat-card-title>
     </mat-card>
   </div>
 

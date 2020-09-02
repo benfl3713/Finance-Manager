@@ -18,3 +18,11 @@ button:disabled {
   height: 30px;
   width: 30px;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.centre-text {
+  text-align: center;
+}

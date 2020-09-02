@@ -19,4 +19,8 @@ export class TransactionsService {
     };
     return this.financeApi.get<any[]>('transactions', queryParams);
   }
+
+  getTransactionById(transactionId: string): Observable<any> {
+    return this.financeApi.get<any[]>(`transaction/${transactionId}`);
+  }
 }

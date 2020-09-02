@@ -8,6 +8,7 @@ import { DashboardComponent } from './Pages/dashboard/dashboard.component';
 import { AccountsComponent } from './Pages/accounts/accounts.component';
 import { TransactionsComponent } from './Pages/transactions/transactions.component';
 import { AccountDetailsComponent } from './Pages/account-details/account-details.component';
+import { TransactionDetailsComponent } from './Pages/transaction-details/transaction-details.component';
 
 const authorisedRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const authorisedRoutes: Routes = [
   {
     path: 'account/:id',
     component: AccountDetailsComponent,
+  },
+  {
+    path: 'transaction/:id',
+    component: TransactionDetailsComponent,
   },
 ];
 

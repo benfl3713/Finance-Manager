@@ -20,6 +20,16 @@ export class FinanceApiRequest {
     return localStorage.removeItem('id_token');
   }
 
+  public static LoadBaseUrl(http: HttpClient): () => Promise<void> {
+    return () =>
+      http
+        .get<string>('/api/config/FinanceApiUrl')
+        .toPromise()
+        .then((url) => {
+          FinanceApiRequest.BASE_URL = url;
+        });
+  }
+
   public get<T>(url: string, queryParams?: Params): Observable<T> {
     return this.http.get<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
       params: queryParams,

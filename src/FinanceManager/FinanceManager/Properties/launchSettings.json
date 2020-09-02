@@ -20,7 +20,8 @@
       "launchBrowser": true,
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "finance_api_url": "http://bendrive:5001/api"
       }
     }
   }

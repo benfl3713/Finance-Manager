@@ -2,7 +2,7 @@
   id="loading-bar"
   mode="indeterminate"
   color="accent"
-  *ngIf="LoadingBar === true"
+  *ngIf="'default' | swIsLoading | async"
 ></mat-progress-bar>
 <mat-toolbar
   id="top-bar"
