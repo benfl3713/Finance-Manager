@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  finance-manager:
+    build:
+        context: ./src/FinanceManager
+        dockerfile: "Dockerfile"
+    image: finance-manager:latest
+    ports:
+      - "8080:80"
