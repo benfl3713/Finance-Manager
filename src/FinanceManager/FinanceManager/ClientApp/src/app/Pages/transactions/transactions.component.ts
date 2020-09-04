@@ -3,6 +3,7 @@ import { TransactionsService } from '../../Services/transactions.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-transactions-table',
@@ -12,7 +13,8 @@ import { tap } from 'rxjs/operators';
 export class TransactionsComponent implements OnInit {
   constructor(
     private transactionsService: TransactionsService,
-    private loadingService: IsLoadingService
+    private loadingService: IsLoadingService,
+    private deviceService: DeviceDetectorService
   ) {}
 
   @Input() account: string;
@@ -25,9 +27,11 @@ export class TransactionsComponent implements OnInit {
     'amount',
     'vendor',
     'category',
-    'merchant',
+    'status',
     'type',
   ];
+
+  mobileColumns: string[] = ['logo', 'date', 'amount', 'vendor', 'status'];
 
   ngOnInit(): void {
     this.loadingService.add({ key: ['default', 'transactions-table'] });
@@ -40,5 +44,9 @@ export class TransactionsComponent implements OnInit {
         this.loadingService.remove({ key: ['default', 'transactions-table'] })
       )
     );
+
+    if (this.deviceService.isMobile()) {
+      this.displayedColumns = this.mobileColumns;
+    }
   }
 }

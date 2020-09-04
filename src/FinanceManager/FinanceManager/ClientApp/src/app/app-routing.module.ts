@@ -40,6 +40,13 @@ const authorisedRoutes: Routes = [
       { path: 'transaction', component: AddTransactionComponent },
     ],
   },
+  {
+    path: 'datafeeds',
+    loadChildren: () =>
+      import('./Pages/datafeeds/datafeeds.module').then(
+        (m) => m.DatafeedsModule
+      ),
+  },
 ];
 
 const routes: Routes = [

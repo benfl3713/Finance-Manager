@@ -44,6 +44,7 @@ export class AddTransactionComponent implements OnInit, AfterViewInit {
 
     this.transactionService.addTransaction(transaction).subscribe({
       next: () => this.router.navigate(['/transactions']),
+      error: () => this.transactionForm.enable(),
     });
   }
 }

@@ -31,3 +31,13 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 .finance-dark-theme {
   @include angular-material-theme($dark-theme);
 }
+
+.mat-primary-background {
+  background-color: mat-color($mat-blue, A700);
+  color: white !important;
+}
+
+mat-nav-list .menu-item:focus {
+  background-color: mat-color($mat-blue, A700) !important;
+  color: white !important;
+}

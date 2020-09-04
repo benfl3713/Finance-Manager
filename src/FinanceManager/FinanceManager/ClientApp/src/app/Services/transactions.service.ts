@@ -27,4 +27,12 @@ export class TransactionsService {
   addTransaction(transaction: any): Observable<void> {
     return this.financeApi.post('transaction', JSON.stringify(transaction));
   }
+
+  updateTransaction(transaction: any): Observable<void> {
+    return this.financeApi.put('transaction', JSON.stringify(transaction));
+  }
+
+  deleteTransaction(transactionId: string): Observable<void> {
+    return this.financeApi.delete(`transaction/${transactionId}`);
+  }
 }

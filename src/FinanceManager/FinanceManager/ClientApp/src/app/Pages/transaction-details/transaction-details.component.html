@@ -1,4 +1,11 @@
 <div>
-  <h1>Transaction Details:</h1>
-  <app-transaction-form></app-transaction-form>
+  <h1>
+    Transaction Details:
+    <img [src]="icon || 'defaultTransaction.png'" class="transaction-logo" />
+  </h1>
+  <div style="margin-bottom: 20px">
+    <button mat-stroked-button color="warn" (click)="delete()">Delete</button>
+  </div>
+
+  <app-transaction-form (save)="save($event)"></app-transaction-form>
 </div>

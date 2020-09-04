@@ -27,6 +27,9 @@ import { DatePipe } from '@angular/common';
 import { ComponentModule } from './Components/component.module';
 import { AddAccountComponent } from './Pages/add/add-account/add-account.component';
 import { AddTransactionComponent } from './Pages/add/add-transaction/add-transaction.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { PipesModule } from './Pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,11 @@ import { AddTransactionComponent } from './Pages/add/add-transaction/add-transac
     FlexLayoutModule,
     ComponentModule,
     IsLoadingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      registrationStrategy: 'registerImmediately',
+    }),
+    PipesModule,
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'GBP' },
