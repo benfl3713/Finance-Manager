@@ -30,6 +30,7 @@ import { AddTransactionComponent } from './Pages/add/add-transaction/add-transac
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PipesModule } from './Pipes/pipes.module';
+import { AccountDetailsExternalAccountsComponent } from './Pages/account-details/account-details-external-accounts/account-details-external-accounts.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PipesModule } from './Pipes/pipes.module';
     TransactionDetailsComponent,
     AddAccountComponent,
     AddTransactionComponent,
+    AccountDetailsExternalAccountsComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {
   Router,
   RouteConfigLoadStart,
   RouteConfigLoadEnd,
+  NavigationStart,
 } from '@angular/router';
 import { IsLoadingService } from '@service-work/is-loading';
 
@@ -26,6 +27,9 @@ export class AppComponent {
       }
       if (event instanceof RouteConfigLoadEnd) {
         this.loadingService.remove({ key: ['default', 'lazy-loading'] });
+      }
+      if (event instanceof NavigationStart) {
+        this.loadingService.remove();
       }
     });
 

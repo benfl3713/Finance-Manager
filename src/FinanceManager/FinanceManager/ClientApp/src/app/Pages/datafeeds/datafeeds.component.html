@@ -1,1 +1,31 @@
-<p>datafeeds works!</p>
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutGap="10px"
+  fxLayoutAlign="center"
+>
+  <mat-card>
+    <mat-card-title class="centre-text"
+      ><img src="https://docs.truelayer.com/images/logo.png" width="200" />
+    </mat-card-title>
+    <mat-card-content>
+      Integrate with Truelayer to allow you to automatically sync your account
+      with your bank provider. This integration uses
+      <strong>Open Banking</strong> in order to fetch the transactions from your
+      bank account. To find out more information visit
+      <a href="https://truelayer.com/data-api/" target="_blank"
+        >https://truelayer.com/data-api/</a
+      >
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-stroked-button
+        color="primary"
+        [routerLink]="['/datafeeds/truelayer']"
+        class="setup-button"
+      >
+        Setup
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

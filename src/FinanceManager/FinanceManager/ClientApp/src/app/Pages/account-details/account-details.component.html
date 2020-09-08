@@ -1,7 +1,15 @@
 <div *ngIf="account$ | async; let account">
   <h1 id="account-name">{{ account.AccountName }}</h1>
   <div style="margin-bottom: 10px">
-    <button mat-stroked-button color="primary" style="margin-right: 5px">
+    <button
+      mat-stroked-button
+      color="primary"
+      style="margin-right: 8px"
+      [routerLink]="['external-account']"
+    >
+      External Account
+    </button>
+    <button mat-stroked-button color="primary" style="margin-right: 8px">
       Rename
     </button>
     <button mat-stroked-button color="warn" (click)="delete(account.ID)">

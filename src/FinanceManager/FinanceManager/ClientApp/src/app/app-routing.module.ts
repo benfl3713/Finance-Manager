@@ -11,6 +11,7 @@ import { AccountDetailsComponent } from './Pages/account-details/account-details
 import { TransactionDetailsComponent } from './Pages/transaction-details/transaction-details.component';
 import { AddAccountComponent } from './Pages/add/add-account/add-account.component';
 import { AddTransactionComponent } from './Pages/add/add-transaction/add-transaction.component';
+import { AccountDetailsExternalAccountsComponent } from './Pages/account-details/account-details-external-accounts/account-details-external-accounts.component';
 
 const authorisedRoutes: Routes = [
   {
@@ -26,11 +27,15 @@ const authorisedRoutes: Routes = [
     component: TransactionsComponent,
   },
   {
-    path: 'account/:id',
+    path: 'accounts/:id',
     component: AccountDetailsComponent,
   },
   {
-    path: 'transaction/:id',
+    path: 'accounts/:id/external-account',
+    component: AccountDetailsExternalAccountsComponent,
+  },
+  {
+    path: 'transactions/:id',
     component: TransactionDetailsComponent,
   },
   {

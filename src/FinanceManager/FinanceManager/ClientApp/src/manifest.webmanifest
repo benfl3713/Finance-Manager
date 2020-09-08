@@ -1,7 +1,7 @@
 {
   "name": "Finance Manager",
   "short_name": "Finance Manager",
-  "theme_color": "#1976d2",
+  "theme_color": "#2962ff",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "./",
