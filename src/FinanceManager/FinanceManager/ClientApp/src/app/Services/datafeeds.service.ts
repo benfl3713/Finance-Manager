@@ -18,6 +18,14 @@ export class DatafeedsService {
     return this.financeApi.get<any>('datafeeds', query);
   }
 
+  deleteDatafeed(provider: string, vendorId: string): Observable<void> {
+    var query: Params = {
+      provider,
+      vendorId,
+    };
+    return this.financeApi.delete<void>('datafeed/DeleteDatafeed', query);
+  }
+
   getExternalAccounts(): Observable<any> {
     return this.financeApi.get<any>('datafeed/GetExternalAccounts');
   }

@@ -22,4 +22,16 @@ export class DatafeedsListComponent implements OnInit {
       .getDatafeeds(this.provider)
       .subscribe((d) => (this.datafeeds = d));
   }
+
+  deleteDatafeed(datafeed) {
+    if (
+      confirm(
+        'Warning: This will also remove all external account mappings and is not reversable'
+      )
+    ) {
+      this.datafeedsService
+        .deleteDatafeed(datafeed.Provider, datafeed.VendorID)
+        .subscribe(() => this.loadDatafeeds());
+    }
+  }
 }

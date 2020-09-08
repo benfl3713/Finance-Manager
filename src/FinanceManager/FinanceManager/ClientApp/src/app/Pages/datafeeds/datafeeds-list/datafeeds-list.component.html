@@ -23,7 +23,13 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let datafeed">
-      <button mat-stroked-button color="warn">Delete</button>
+      <button
+        mat-stroked-button
+        color="warn"
+        (click)="deleteDatafeed(datafeed)"
+      >
+        Delete
+      </button>
     </td>
   </ng-container>
 
