@@ -20,10 +20,8 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
   externalAccounts: any[] = [];
   displayedColumns: string[] = ['provider', 'vendor', 'accountName', 'actions'];
   disableActions: boolean = false;
-  accountIsMapped: boolean = false;
 
   ngOnInit(): void {
-    this.accountIsMapped = false;
     const accountId = this.route.snapshot.paramMap.get('id');
     this.loadingSerivce.add({ key: ['default', 'load-external-accounts'] });
 
@@ -33,7 +31,6 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
         this.datafeedsService.getExternalAccounts().subscribe({
           next: (ea) => {
             this.externalAccounts = ea;
-            this.calculateIsAccountMapped();
             this.disableActions = false;
           },
           complete: () =>
@@ -43,16 +40,6 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
         });
       },
       error: (ex) => alert(ex),
-    });
-  }
-
-  calculateIsAccountMapped() {
-    this.externalAccounts.forEach((a) => {
-      if (a.Mapped === true && a.MappedAccount === this.account.ID) {
-        this.accountIsMapped = true;
-        console.log('hello');
-        return;
-      }
     });
   }
 
@@ -74,11 +61,11 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
       });
   }
 
-  unMapAccount() {
+  unMapAccount(externalAccount) {
     this.disableActions = true;
     this.loadingSerivce.add({ key: ['default', 'unmap-account'] });
     this.datafeedsService
-      .removeExternalAccountMapping(this.account.ID)
+      .removeExternalAccountMapping(this.account.ID, externalAccount.AccountID)
       .subscribe({
         complete: () => {
           this.loadingSerivce.remove({ key: ['default', 'unmap-account'] });

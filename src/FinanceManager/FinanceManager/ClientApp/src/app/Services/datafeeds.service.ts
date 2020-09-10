@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FinanceApiRequest } from 'src/app/Services/finance-api.request.service';
 import { Params } from '@angular/router';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +27,16 @@ export class DatafeedsService {
     return this.financeApi.delete<void>('datafeed/DeleteDatafeed', query);
   }
 
-  getExternalAccounts(): Observable<any> {
-    return this.financeApi.get<any>('datafeed/GetExternalAccounts');
+  getExternalAccounts(): Observable<any[]> {
+    return this.financeApi.get<any[]>('datafeed/GetExternalAccounts');
+  }
+
+  doesAccountHaveExternalMappings(accountId: string): Observable<boolean> {
+    return this.getExternalAccounts().pipe(
+      map((accounts) => {
+        return accounts.some((a) => a.MappedAccount === accountId);
+      })
+    );
   }
 
   addExternalAccountMapping(
@@ -49,14 +58,23 @@ export class DatafeedsService {
     );
   }
 
-  removeExternalAccountMapping(accountId: string) {
+  removeExternalAccountMapping(accountId: string, externalAccountId: string) {
     var query = {
       accountId,
+      externalAccountId,
     };
 
     return this.financeApi.delete(
       'datafeed/RemoveExternalAccountMapping',
       query
     );
+  }
+
+  refreshAccount(accountId: string) {
+    var query = {
+      accountId,
+    };
+
+    return this.financeApi.get('datafeed/RefreshAccount', query);
   }
 }

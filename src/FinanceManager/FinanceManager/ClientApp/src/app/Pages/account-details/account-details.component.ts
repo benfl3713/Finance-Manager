@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AccountsService } from 'src/app/Services/accounts.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { shareReplay } from 'rxjs/operators';
+import { DatafeedsService } from 'src/app/Services/datafeeds.service';
+import { IsLoadingService } from '@service-work/is-loading';
 
 @Component({
   templateUrl: './account-details.component.html',
@@ -11,7 +13,9 @@ export class AccountDetailsComponent implements OnInit {
   constructor(
     private accountsService: AccountsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private datafeedsService: DatafeedsService,
+    private loadingService: IsLoadingService
   ) {}
 
   ngOnInit(): void {}
@@ -19,6 +23,35 @@ export class AccountDetailsComponent implements OnInit {
   account$ = this.accountsService
     .getAccountById(this.route.snapshot.paramMap.get('id'))
     .pipe(shareReplay(1));
+
+  isAccountMapped = this.datafeedsService.doesAccountHaveExternalMappings(
+    this.route.snapshot.paramMap.get('id')
+  );
+
+  isRefreshEnabledLoading = this.loadingService.isLoading$({
+    key: ['default', 'refresh-account'],
+  });
+
+  refreshAccount() {
+    if (
+      confirm(
+        'Are you sure you want to refresh this account.\nThis will fetch the latest data from your datafeeds'
+      )
+    ) {
+      this.loadingService.add({ key: ['default', 'refresh-account'] });
+      this.datafeedsService
+        .refreshAccount(this.route.snapshot.paramMap.get('id'))
+        .subscribe({
+          next: () => alert('Account will refresh in the background'),
+          error: (ex) => {
+            alert('Something went wrong\nCheck the console for more info');
+            console.log(ex);
+          },
+          complete: () =>
+            this.loadingService.remove({ key: ['default', 'refresh-account'] }),
+        });
+    }
+  }
 
   delete(accountId: string) {
     if (

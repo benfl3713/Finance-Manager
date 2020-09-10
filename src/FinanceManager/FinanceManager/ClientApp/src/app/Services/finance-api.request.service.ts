@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Params } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -31,31 +32,59 @@ export class FinanceApiRequest {
   }
 
   public get<T>(url: string, queryParams?: Params): Observable<T> {
-    return this.http.get<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
-      params: queryParams,
-      headers: this.authHeader,
-    });
+    return this.http
+      .get<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
+        params: queryParams,
+        headers: this.authHeader,
+      })
+      .pipe(
+        catchError((ex) => {
+          console.log(ex);
+          return of<T>() as Observable<T>;
+        })
+      );
   }
 
   public post<T>(url: string, body: any, queryParams?: Params): Observable<T> {
-    return this.http.post<T>(`${FinanceApiRequest.BASE_URL}${url}`, body, {
-      params: queryParams,
-      headers: this.authHeader,
-    });
+    return this.http
+      .post<T>(`${FinanceApiRequest.BASE_URL}${url}`, body, {
+        params: queryParams,
+        headers: this.authHeader,
+      })
+      .pipe(
+        catchError((ex) => {
+          console.log(ex);
+          return of<T>() as Observable<T>;
+        })
+      );
   }
 
   public put<T>(url: string, body: any, queryParams?: Params): Observable<T> {
-    return this.http.put<T>(`${FinanceApiRequest.BASE_URL}${url}`, body, {
-      params: queryParams,
-      headers: this.authHeader,
-    });
+    return this.http
+      .put<T>(`${FinanceApiRequest.BASE_URL}${url}`, body, {
+        params: queryParams,
+        headers: this.authHeader,
+      })
+      .pipe(
+        catchError((ex) => {
+          console.log(ex);
+          return of<T>() as Observable<T>;
+        })
+      );
   }
 
   public delete<T>(url: string, queryParams?: Params): Observable<T> {
-    return this.http.delete<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
-      params: queryParams,
-      headers: this.authHeader,
-    });
+    return this.http
+      .delete<T>(`${FinanceApiRequest.BASE_URL}${url}`, {
+        params: queryParams,
+        headers: this.authHeader,
+      })
+      .pipe(
+        catchError((ex) => {
+          console.log(ex);
+          return of<T>() as Observable<T>;
+        })
+      );
   }
 
   get authHeader(): HttpHeaders {

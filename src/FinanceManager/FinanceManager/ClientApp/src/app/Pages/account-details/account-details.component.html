@@ -1,6 +1,16 @@
-<div *ngIf="account$ | async; let account">
+<div *ngIf="account$ | async; let account; else: no_account">
   <h1 id="account-name">{{ account.AccountName }}</h1>
   <div style="margin-bottom: 10px">
+    <button
+      *ngIf="isAccountMapped | async"
+      mat-flat-button
+      color="primary"
+      style="margin-right: 8px"
+      (click)="refreshAccount()"
+      [disabled]="isLoading | async"
+    >
+      Refresh
+    </button>
     <button
       mat-stroked-button
       color="primary"
@@ -47,3 +57,5 @@
   <h2 class="transactions-section">Account Transactions:</h2>
   <app-transactions-table [account]="account.ID"></app-transactions-table>
 </div>
+
+<ng-template #no_account><h1>Could not Find Account</h1></ng-template>
