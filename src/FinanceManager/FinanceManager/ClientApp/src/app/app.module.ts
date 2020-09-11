@@ -62,6 +62,7 @@ import { AccountDetailsExternalAccountsComponent } from './Pages/account-details
     PipesModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
+      registrationStrategy: 'registerImmediately',
     }),
   ],
   providers: [
