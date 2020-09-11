@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  AfterViewInit,
+  HostListener,
+} from '@angular/core';
 import { TransactionsService } from 'src/app/Services/transactions.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { shareReplay } from 'rxjs/operators';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
 import { TransactionFormComponent } from 'src/app/Components/transaction-form/transaction-form.component';
 
 @Component({
@@ -25,6 +28,13 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
+  }
+
+  // Adds fragment to url
+  @HostListener('window:popstate', ['$event'])
+  onBrowserBackBtnClose(event: Event) {
+    event.preventDefault();
+    setTimeout(() => this.router.navigate([], { fragment: this.id }), 0);
   }
 
   ngAfterViewInit(): void {
