@@ -59,11 +59,10 @@ import { AccountDetailsExternalAccountsComponent } from './Pages/account-details
     FlexLayoutModule,
     ComponentModule,
     IsLoadingModule,
+    PipesModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-      registrationStrategy: 'registerImmediately',
     }),
-    PipesModule,
   ],
   providers: [
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'GBP' },
