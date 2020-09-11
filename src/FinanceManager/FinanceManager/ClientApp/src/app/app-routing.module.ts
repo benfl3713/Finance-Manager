@@ -59,6 +59,7 @@ const routes: Routes = [
     path: '',
     component: NavigationComponent,
     canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: authorisedRoutes,
   },
   { path: 'login', component: LoginComponent },

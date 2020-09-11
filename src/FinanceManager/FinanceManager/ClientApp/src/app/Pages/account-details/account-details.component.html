@@ -1,4 +1,4 @@
-<div *ngIf="account$ | async; let account; else: no_account">
+<div *ngIf="account$ | async; let account">
   <h1 id="account-name">{{ account.AccountName }}</h1>
   <div style="margin-bottom: 10px">
     <button
@@ -58,4 +58,4 @@
   <app-transactions-table [account]="account.ID"></app-transactions-table>
 </div>
 
-<ng-template #no_account><h1>Could not Find Account</h1></ng-template>
+<div *ngIf="accountNotFound"><h1>Could not Find Account</h1></div>

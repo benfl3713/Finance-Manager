@@ -32,11 +32,13 @@ export class DatafeedsService {
   }
 
   doesAccountHaveExternalMappings(accountId: string): Observable<boolean> {
-    return this.getExternalAccounts().pipe(
-      map((accounts) => {
-        return accounts.some((a) => a.MappedAccount === accountId);
-      })
-    );
+    return this.financeApi
+      .get<any[]>('datafeed/GetMappedExternalAccounts', { accountId })
+      .pipe(
+        map((accounts) => {
+          return accounts.some((a) => a.MappedAccount === accountId);
+        })
+      );
   }
 
   addExternalAccountMapping(

@@ -40,7 +40,7 @@ export class FinanceApiRequest {
       .pipe(
         catchError((ex) => {
           console.log(ex);
-          return of<T>() as Observable<T>;
+          throw ex;
         })
       );
   }
@@ -54,7 +54,7 @@ export class FinanceApiRequest {
       .pipe(
         catchError((ex) => {
           console.log(ex);
-          return of<T>() as Observable<T>;
+          throw ex;
         })
       );
   }
@@ -68,7 +68,7 @@ export class FinanceApiRequest {
       .pipe(
         catchError((ex) => {
           console.log(ex);
-          return of<T>() as Observable<T>;
+          throw ex;
         })
       );
   }
@@ -82,7 +82,7 @@ export class FinanceApiRequest {
       .pipe(
         catchError((ex) => {
           console.log(ex);
-          return of<T>() as Observable<T>;
+          throw ex;
         })
       );
   }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from 'src/app/Services/accounts.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { shareReplay } from 'rxjs/operators';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { DatafeedsService } from 'src/app/Services/datafeeds.service';
 import { IsLoadingService } from '@service-work/is-loading';
+import { of } from 'rxjs';
 
 @Component({
   templateUrl: './account-details.component.html',
@@ -22,11 +23,19 @@ export class AccountDetailsComponent implements OnInit {
 
   account$ = this.accountsService
     .getAccountById(this.route.snapshot.paramMap.get('id'))
-    .pipe(shareReplay(1));
+    .pipe(shareReplay(1))
+    .pipe(
+      catchError(() => {
+        this.accountNotFound = true;
+        return of();
+      })
+    );
 
   isAccountMapped = this.datafeedsService.doesAccountHaveExternalMappings(
     this.route.snapshot.paramMap.get('id')
   );
+
+  accountNotFound = false;
 
   isRefreshEnabledLoading = this.loadingService.isLoading$({
     key: ['default', 'refresh-account'],

@@ -8,7 +8,7 @@ import { DatafeedsService } from '../../../Services/datafeeds.service';
 })
 export class DatafeedTruelayerComponent implements OnInit {
   constructor(private financeApi: FinanceApiRequest) {}
-  private baseUrl: string = 'https://auth.truelayer-sandbox.com/';
+  private baseUrl: string;
   private clientId = this.financeApi.get<string>(
     'DatafeedAuth/GetTrueLayerClientId'
   );
@@ -19,6 +19,10 @@ export class DatafeedTruelayerComponent implements OnInit {
   LinkTrueLayer() {
     this.clientId.subscribe({
       next: (id) => {
+        this.baseUrl = id.startsWith('sandbox-')
+          ? 'https://auth.truelayer-sandbox.com/'
+          : 'https://auth.truelayer.com/';
+        console.log(this.baseUrl);
         window.open(
           this.baseUrl +
             '?response_type=code&client_id=' +
