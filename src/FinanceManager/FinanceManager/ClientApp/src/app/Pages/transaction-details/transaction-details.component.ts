@@ -33,7 +33,7 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
         .getTransactionById(this.id)
         .subscribe((transaction) => {
           if (transaction) {
-            this.icon = transaction.Icon;
+            this.icon = transaction.Logo;
             this.transactionForm.setFormValues(transaction);
             this.transactionForm.enable();
           }
