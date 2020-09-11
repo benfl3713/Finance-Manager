@@ -26,7 +26,7 @@ export class TransactionFormComponent implements OnInit {
       Validators.required,
     ]),
     amount: new FormControl(null, [Validators.required]),
-    currency: new FormControl('GBP', [Validators.required]),
+    currency: new FormControl('GBP'),
     status: new FormControl('SETTLED', [Validators.required]),
     type: new FormControl(null),
     vendor: new FormControl(null),
