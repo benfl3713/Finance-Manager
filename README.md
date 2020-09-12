@@ -1,4 +1,5 @@
 # Finance-Manager
+![](https://github.com/benfl3713/Finance-Manager/workflows/Pipeline/badge.svg?branch=master)
 
 Personal Finance Manager Web App
 
