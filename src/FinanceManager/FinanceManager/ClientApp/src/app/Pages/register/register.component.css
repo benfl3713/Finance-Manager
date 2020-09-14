@@ -40,7 +40,7 @@ mat-card-content {
   height: 100%;
   width: 100%;
   position: absolute;
-  background: url(/city.jpg) no-repeat;
+  background: url(/assets/city.jpg) no-repeat;
   z-index: 1;
   -webkit-background-size: cover;
   -moz-background-size: cover;

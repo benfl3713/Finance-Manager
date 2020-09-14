@@ -1,7 +1,10 @@
 <div>
   <h1>
     Transaction Details:
-    <img [src]="icon || 'defaultTransaction.png'" class="transaction-logo" />
+    <img
+      [src]="icon || 'assets/defaultTransaction.png'"
+      class="transaction-logo"
+    />
   </h1>
   <div style="margin-bottom: 20px">
     <button mat-stroked-button color="warn" (click)="delete()">Delete</button>
