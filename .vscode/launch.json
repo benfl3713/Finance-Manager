@@ -5,30 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Run Finance Manager",
-      "type": "coreclr",
+      "name": "Launch Chrome",
       "request": "launch",
-      "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/FinanceManager/FinanceManager/bin/Debug/netcoreapp3.1/FinanceManager.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}/src/FinanceManager/FinanceManager",
-      "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
-      }
-    },
-    {
-      "name": ".NET Core Attach",
-      "type": "coreclr",
-      "request": "attach",
-      "processId": "${command:pickProcess}"
+      "type": "pwa-chrome",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/src"
     }
   ]
 }

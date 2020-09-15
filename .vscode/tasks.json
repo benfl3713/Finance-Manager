@@ -4,37 +4,24 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "build",
-        "${workspaceFolder}/src/FinanceManager/FinanceManager/FinanceManager.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
+      "type": "npm",
+      "script": "build",
+      "path": "src/",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "presentation": {
-        "reveal": "silent"
-      },
-      "problemMatcher": "$msCompile"
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "ng build"
     },
     {
-      "label": "publish",
-      "command": "dotnet",
-      "type": "shell",
-      "args": [
-        "publish",
-        "${workspaceFolder}/src/FinanceManager/FinanceManager/FinanceManager.csproj",
-        "-c=Release"
-      ],
-      "presentation": {
-        "reveal": "always"
-      },
-      "problemMatcher": "$msCompile"
+      "type": "npm",
+      "script": "start",
+      "path": "src/",
+      "problemMatcher": [],
+      "label": "npm: start",
+      "detail": "ng start"
     }
   ]
 }

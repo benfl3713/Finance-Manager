@@ -46,6 +46,10 @@ export class TransactionsComponent implements OnInit {
 
   mobileColumns: string[] = ['Logo', 'Date', 'Amount', 'Vendor'];
 
+  isLoading = this.loadingService.isLoading$({
+    key: ['default', 'transactions-table'],
+  });
+
   ngOnInit(): void {
     this.loadingService.add({ key: ['default', 'transactions-table'] });
     this.transactions = this.account

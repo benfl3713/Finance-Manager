@@ -92,8 +92,13 @@
   (page)="scrollToTop()"
 ></mat-paginator>
 
+<span *ngIf="!(isLoading | async)" class="text-centre"
+  ><a href="https://clearbit.com" target="_blank">Logos provided by Clearbit</a>
+</span>
+
 <ng-template #loadingSpinner>
   <mat-progress-spinner
+    *ngIf="isLoading | async"
     color="primary"
     style="margin: auto; margin-top: 100px"
     mode="indeterminate"
