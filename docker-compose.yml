@@ -8,5 +8,5 @@ services:
     image: finance-manager:latest
     ports:
       - "8080:80"
-    # environment:
-    #   FinanceApiUrl: ""
+    environment:
+      FinanceApiUrl: "http://localhost:5001"
