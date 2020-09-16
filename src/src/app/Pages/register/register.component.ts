@@ -3,13 +3,18 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { FinanceApiRequest } from 'src/app/Services/finance-api.request.service';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notifier: NotifierService
+  ) {}
 
   loadingBar: boolean = false;
   error: string;
@@ -44,14 +49,25 @@ export class RegisterComponent implements OnInit {
     this.authService.register(body).subscribe({
       next: (clientId) => {
         if (clientId) {
+          this.notifier.notify('success', 'Registered successfully');
           this.router.navigate(['login']);
         }
         this.error = 'Failed to Register';
+        this.registerForm.enable();
+        this.loadingBar = false;
       },
+      error: (ex) => this.processRegisterError(ex),
       complete: () => {
         this.registerForm.enable();
         this.loadingBar = false;
       },
     });
+  }
+
+  processRegisterError(ex) {
+    console.log(ex);
+    this.notifier.notify('error', ex.error.error || 'Something went Wrong');
+    this.registerForm.enable();
+    this.loadingBar = false;
   }
 }

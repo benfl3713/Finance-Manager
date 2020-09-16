@@ -26,6 +26,7 @@
     "@angular/router": "~10.0.14",
     "@angular/service-worker": "~10.0.14",
     "@service-work/is-loading": "^3.0.3",
+    "angular-notifier": "^6.0.1",
     "jwt-decode": "^2.2.0",
     "ngx-device-detector": "^2.0.0",
     "rxjs": "~6.5.5",

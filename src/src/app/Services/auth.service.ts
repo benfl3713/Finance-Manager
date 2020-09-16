@@ -23,15 +23,16 @@ export class AuthService {
       .pipe(
         catchError((e) => {
           console.log(e);
-          return of(null);
+          throw e;
         })
       )
       .pipe(catchError(() => of(null)));
   }
 
   register(formValues: any): Observable<string> {
-    return this.http
-      .post<string>(`${FinanceApiRequest.BASE_URL}client`, formValues)
-      .pipe(catchError(() => of(null)));
+    return this.http.post<string>(
+      `${FinanceApiRequest.BASE_URL}client`,
+      formValues
+    );
   }
 }

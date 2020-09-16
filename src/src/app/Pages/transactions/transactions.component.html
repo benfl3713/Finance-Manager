@@ -1,9 +1,17 @@
+<mat-progress-spinner
+  *ngIf="isLoading | async"
+  color="primary"
+  style="margin: auto; margin-top: 100px"
+  mode="indeterminate"
+></mat-progress-spinner>
+
 <table
   id="transaction-table"
   mat-table
   matSort
   [dataSource]="transactions | async"
   class="mat-elevation-z4 table-hover"
+  [hidden]="isLoading | async"
 >
   <ng-container matColumnDef="Logo">
     <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
@@ -86,6 +94,7 @@
   ></tr>
 </table>
 <mat-paginator
+  [hidden]="isLoading | async"
   [pageSizeOptions]="[20, 50, 100, 200, 500]"
   [pageSize]="100"
   showFirstLastButtons
@@ -95,12 +104,3 @@
 <span *ngIf="!(isLoading | async)" class="text-centre"
   ><a href="https://clearbit.com" target="_blank">Logos provided by Clearbit</a>
 </span>
-
-<ng-template #loadingSpinner>
-  <mat-progress-spinner
-    *ngIf="isLoading | async"
-    color="primary"
-    style="margin: auto; margin-top: 100px"
-    mode="indeterminate"
-  ></mat-progress-spinner>
-</ng-template>

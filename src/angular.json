@@ -25,7 +25,17 @@
               "src/assets",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/default.theme.scss", "src/styles.css"],
+            "styles": [
+              "src/default.theme.scss",
+              "src/styles.css",
+              "./node_modules/angular-notifier/styles/core.css",
+              "./node_modules/angular-notifier/styles/themes/theme-material.css",
+              "./node_modules/angular-notifier/styles/types/type-default.css",
+              "./node_modules/angular-notifier/styles/types/type-error.css",
+              "./node_modules/angular-notifier/styles/types/type-info.css",
+              "./node_modules/angular-notifier/styles/types/type-success.css",
+              "./node_modules/angular-notifier/styles/types/type-warning.css"
+            ],
             "scripts": []
           },
           "configurations": {

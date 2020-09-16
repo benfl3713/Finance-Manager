@@ -23,4 +23,8 @@ export class AccountsService {
   deleteAccount(accountId: string) {
     return this.financeApi.delete<any>(`account/${accountId}`);
   }
+
+  getSpentThisWeek(accountId: string) {
+    return this.financeApi.get<number>(`account/${accountId}/GetSpentThisWeek`);
+  }
 }

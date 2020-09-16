@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from 'src/app/Services/accounts.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, shareReplay, tap } from 'rxjs/operators';
+import { catchError, shareReplay } from 'rxjs/operators';
 import { DatafeedsService } from 'src/app/Services/datafeeds.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { of } from 'rxjs';
@@ -19,10 +19,22 @@ export class AccountDetailsComponent implements OnInit {
     private loadingService: IsLoadingService
   ) {}
 
-  ngOnInit(): void {}
+  id: string = this.route.snapshot.paramMap.get('id');
+
+  ngOnInit(): void {
+    this.accountsService
+      .getSpentThisWeek(this.id)
+      .pipe(
+        catchError((ex) => {
+          console.log(ex);
+          return of(0);
+        })
+      )
+      .subscribe((v) => (this.spentThisWeek = v ?? 0));
+  }
 
   account$ = this.accountsService
-    .getAccountById(this.route.snapshot.paramMap.get('id'))
+    .getAccountById(this.id)
     .pipe(shareReplay(1))
     .pipe(
       catchError(() => {
@@ -31,8 +43,10 @@ export class AccountDetailsComponent implements OnInit {
       })
     );
 
+  spentThisWeek: number;
+
   isAccountMapped = this.datafeedsService.doesAccountHaveExternalMappings(
-    this.route.snapshot.paramMap.get('id')
+    this.id
   );
 
   accountNotFound = false;
@@ -48,17 +62,15 @@ export class AccountDetailsComponent implements OnInit {
       )
     ) {
       this.loadingService.add({ key: ['default', 'refresh-account'] });
-      this.datafeedsService
-        .refreshAccount(this.route.snapshot.paramMap.get('id'))
-        .subscribe({
-          next: () => alert('Account will refresh in the background'),
-          error: (ex) => {
-            alert('Something went wrong\nCheck the console for more info');
-            console.log(ex);
-          },
-          complete: () =>
-            this.loadingService.remove({ key: ['default', 'refresh-account'] }),
-        });
+      this.datafeedsService.refreshAccount(this.id).subscribe({
+        next: () => alert('Account will refresh in the background'),
+        error: (ex) => {
+          alert('Something went wrong\nCheck the console for more info');
+          console.log(ex);
+        },
+        complete: () =>
+          this.loadingService.remove({ key: ['default', 'refresh-account'] }),
+      });
     }
   }
 

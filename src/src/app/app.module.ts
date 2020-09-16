@@ -7,6 +7,7 @@ import {
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { IsLoadingModule } from '@service-work/is-loading';
+import { NotifierModule } from 'angular-notifier';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './Components/material.module';
@@ -60,6 +61,20 @@ import { AccountDetailsExternalAccountsComponent } from './Pages/account-details
     ComponentModule,
     IsLoadingModule,
     PipesModule,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'right',
+        },
+        vertical: {
+          position: 'top',
+          distance: 40,
+        },
+      },
+      behaviour: {
+        autoHide: 3500,
+      },
+    }),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerImmediately',
