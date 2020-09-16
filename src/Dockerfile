@@ -3,7 +3,7 @@ WORKDIR /app
 COPY . .
 
 RUN npm install
-RUN npm run build --prod
+RUN npm run build:prod
 
 # Final Image
 FROM nginx:1.19.2-alpine
