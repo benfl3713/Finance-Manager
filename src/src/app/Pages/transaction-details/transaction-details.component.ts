@@ -25,6 +25,7 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
 
   id: string;
   icon: string;
+  resetIcon: boolean = false;
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -66,10 +67,19 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
       Status: form.value.status,
     };
 
+    if (this.resetIcon == true) {
+      transaction['Logo'] = null;
+    }
+
     this.transactionService.updateTransaction(transaction).subscribe({
       next: () => this.router.navigate(['/transactions']),
       error: () => this.transactionForm.enable(),
     });
+  }
+
+  setIconToNull() {
+    this.icon = null;
+    this.resetIcon = true;
   }
 
   delete() {
