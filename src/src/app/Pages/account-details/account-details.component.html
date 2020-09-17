@@ -1,5 +1,4 @@
 <div *ngIf="account$ | async; let account">
-  <h1 id="account-name">{{ account.AccountName }}</h1>
   <div style="margin-bottom: 10px">
     <button
       *ngIf="isAccountMapped | async"
@@ -7,7 +6,6 @@
       color="primary"
       style="margin-right: 8px"
       (click)="refreshAccount()"
-      [disabled]="isLoading | async"
     >
       Refresh
     </button>

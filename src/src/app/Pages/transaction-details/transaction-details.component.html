@@ -1,12 +1,9 @@
 <div>
-  <h1>
-    Transaction Details:
+  <div style="margin-bottom: 20px" *ngIf="!transactionNotFound">
     <img
       [src]="icon || 'assets/defaultTransaction.png'"
       class="transaction-logo"
     />
-  </h1>
-  <div style="margin-bottom: 20px">
     <button
       mat-stroked-button
       color="primary"
@@ -18,5 +15,12 @@
     <button mat-stroked-button color="warn" (click)="delete()">Delete</button>
   </div>
 
-  <app-transaction-form (save)="save($event)"></app-transaction-form>
+  <app-transaction-form
+    (save)="save($event)"
+    [hidden]="transactionNotFound"
+  ></app-transaction-form>
+
+  <h1 *ngIf="transactionNotFound" style="color: red">
+    Could not find Transaction
+  </h1>
 </div>

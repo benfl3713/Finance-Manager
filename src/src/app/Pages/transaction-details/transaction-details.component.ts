@@ -8,6 +8,7 @@ import {
 import { TransactionsService } from 'src/app/Services/transactions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFormComponent } from 'src/app/Components/transaction-form/transaction-form.component';
+import { TitleService } from 'src/app/Services/title.service';
 
 @Component({
   templateUrl: './transaction-details.component.html',
@@ -17,8 +18,11 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
   constructor(
     private transactionService: TransactionsService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private router: Router,
+    private titleService: TitleService
+  ) {
+    this.titleService.setTitle('Transaction Details');
+  }
 
   @ViewChild(TransactionFormComponent, { static: false })
   private transactionForm: TransactionFormComponent;
@@ -26,6 +30,7 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
   id: string;
   icon: string;
   resetIcon: boolean = false;
+  transactionNotFound: boolean = false;
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -40,15 +45,18 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     Promise.resolve(() => this.transactionForm.disable()).then(() => {
-      this.transactionService
-        .getTransactionById(this.id)
-        .subscribe((transaction) => {
+      this.transactionService.getTransactionById(this.id).subscribe({
+        next: (transaction) => {
           if (transaction) {
             this.icon = transaction.Logo;
             this.transactionForm.setFormValues(transaction);
             this.transactionForm.enable();
+          } else {
+            this.transactionNotFound = true;
           }
-        });
+        },
+        error: () => (this.transactionNotFound = true),
+      });
     });
   }
 

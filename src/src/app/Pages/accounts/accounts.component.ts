@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AccountsService } from '../../Services/accounts.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { tap } from 'rxjs/operators';
+import { TitleService } from 'src/app/Services/title.service';
 
 @Component({
   templateUrl: './accounts.component.html',
@@ -10,8 +11,11 @@ import { tap } from 'rxjs/operators';
 export class AccountsComponent implements OnInit {
   constructor(
     private accountsService: AccountsService,
-    private loadingService: IsLoadingService
-  ) {}
+    private loadingService: IsLoadingService,
+    private titleService: TitleService
+  ) {
+    this.titleService.showBackButton.next(false);
+  }
 
   accounts = this.accountsService
     .getAccounts()
@@ -24,6 +28,7 @@ export class AccountsComponent implements OnInit {
   displayedColumns: string[] = ['name', 'currentbalance', 'availablebalance'];
 
   ngOnInit(): void {
+    this.titleService.setTitle('Accounts');
     this.loadingService.add({ key: ['default', 'accounts-table'] });
   }
 }

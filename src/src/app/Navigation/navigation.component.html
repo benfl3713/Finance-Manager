@@ -14,6 +14,7 @@
     type="button"
     aria-label="Toggle sidenav"
     mat-icon-button
+    class="hide-button-outline"
     (click)="sidenav.toggle()"
   >
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
@@ -113,6 +114,26 @@
   </mat-sidenav>
 
   <div class="container-fluid">
+    <div *ngIf="showBackButton$ | async">
+      <button
+        type="button"
+        aria-label="Go back"
+        mat-icon-button
+        style="float: left"
+        class="hide-button-outline"
+        (click)="goBack()"
+      >
+        <mat-icon aria-label="Side nav toggle icon"
+          >keyboard_backspace</mat-icon
+        >
+      </button>
+      <h1 style="font-size: 28px; float: left; margin-top: 5px">
+        {{ page_title$ | async }}
+      </h1>
+      <br />
+      <br />
+      <br />
+    </div>
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>

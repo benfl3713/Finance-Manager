@@ -7,6 +7,7 @@ import {
   NavigationStart,
 } from '@angular/router';
 import { IsLoadingService } from '@service-work/is-loading';
+import { TitleService } from './Services/title.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent {
   constructor(
     private router: Router,
     private updates: SwUpdate,
-    private loadingService: IsLoadingService
+    private loadingService: IsLoadingService,
+    private titleSerivce: TitleService
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof RouteConfigLoadStart) {
@@ -30,6 +32,8 @@ export class AppComponent {
       }
       if (event instanceof NavigationStart) {
         this.loadingService.remove();
+        this.titleSerivce.resetTitle();
+        this.titleSerivce.showBackButton.next(true);
       }
     });
 

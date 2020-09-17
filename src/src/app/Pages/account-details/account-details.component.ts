@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from 'src/app/Services/accounts.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, shareReplay } from 'rxjs/operators';
+import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { DatafeedsService } from 'src/app/Services/datafeeds.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { of } from 'rxjs';
+import { TitleService } from 'src/app/Services/title.service';
 
 @Component({
   templateUrl: './account-details.component.html',
@@ -16,8 +17,11 @@ export class AccountDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private datafeedsService: DatafeedsService,
-    private loadingService: IsLoadingService
-  ) {}
+    private loadingService: IsLoadingService,
+    private titleService: TitleService
+  ) {
+    this.titleService.showBackButton.next(true);
+  }
 
   id: string = this.route.snapshot.paramMap.get('id');
 
@@ -36,6 +40,9 @@ export class AccountDetailsComponent implements OnInit {
   account$ = this.accountsService
     .getAccountById(this.id)
     .pipe(shareReplay(1))
+    .pipe(
+      tap((a) => setTimeout(() => this.titleService.setTitle(a.AccountName), 0))
+    )
     .pipe(
       catchError(() => {
         this.accountNotFound = true;

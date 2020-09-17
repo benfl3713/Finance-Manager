@@ -4,7 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { FinanceApiRequest } from '../Services/finance-api.request.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TitleService } from '../Services/title.service';
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +19,8 @@ export class NavigationComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private titleService: TitleService
   ) {}
   @ViewChild(MatSidenav, { static: false }) public sidenav: MatSidenav;
 
@@ -29,6 +31,9 @@ export class NavigationComponent {
       shareReplay(),
       map((isHandset) => (this.IsMobile = isHandset))
     );
+
+  page_title$ = this.titleService.title;
+  showBackButton$ = this.titleService.showBackButton;
 
   ngOnInit(): void {}
 
@@ -41,5 +46,9 @@ export class NavigationComponent {
   LogOut(): void {
     FinanceApiRequest.setToken(null);
     this.router.navigate(['login']);
+  }
+
+  goBack() {
+    window.history.back();
   }
 }

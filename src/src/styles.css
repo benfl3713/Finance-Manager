@@ -26,3 +26,8 @@ button:disabled {
 .centre-text {
   text-align: center;
 }
+
+.hide-button-outline:focus {
+  outline: none;
+  box-shadow: none;
+}
