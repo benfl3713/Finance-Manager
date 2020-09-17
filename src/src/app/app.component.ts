@@ -8,6 +8,7 @@ import {
 } from '@angular/router';
 import { IsLoadingService } from '@service-work/is-loading';
 import { TitleService } from './Services/title.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
     private router: Router,
     private updates: SwUpdate,
     private loadingService: IsLoadingService,
-    private titleSerivce: TitleService
+    private titleSerivce: TitleService,
+    private snackBar: MatSnackBar
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof RouteConfigLoadStart) {
@@ -42,7 +44,12 @@ export class AppComponent {
 
   CheckForUpdate() {
     this.updates.available.subscribe(() => {
-      this.updates.activateUpdate().then(() => document.location.reload());
+      this.snackBar
+        .open('New Update Available', 'Refresh')
+        .onAction()
+        .subscribe(() =>
+          this.updates.activateUpdate().then(() => document.location.reload())
+        );
     });
   }
 }
