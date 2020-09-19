@@ -15,13 +15,26 @@
 
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input type="text" matInput required formControlName="username" />
+          <input
+            type="text"
+            matInput
+            required
+            formControlName="username"
+            autocapitalize="none"
+            autocomplete="username"
+          />
           <mat-error>Username Required</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input type="password" matInput required formControlName="password" />
+          <input
+            type="password"
+            matInput
+            required
+            formControlName="password"
+            autocomplete="current-password"
+          />
           <mat-error>Password Required</mat-error>
         </mat-form-field>
         <br />

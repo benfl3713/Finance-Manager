@@ -15,25 +15,49 @@
 
         <mat-form-field appearance="fill">
           <mat-label>First Name</mat-label>
-          <input type="text" matInput required formControlName="firstName" />
+          <input
+            type="text"
+            matInput
+            required
+            formControlName="firstName"
+            autocomplete="fname"
+          />
           <mat-error>First Name Required</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill">
           <mat-label>Last Name</mat-label>
-          <input type="text" matInput required formControlName="lastName" />
+          <input
+            type="text"
+            matInput
+            required
+            formControlName="lastName"
+            autocomplete="lname"
+          />
           <mat-error>Last Name Required</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input type="text" matInput required formControlName="username" />
+          <input
+            type="text"
+            matInput
+            required
+            formControlName="username"
+            autocomplete="username"
+          />
           <mat-error>Username Required</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
-          <input type="password" matInput required formControlName="password" />
+          <input
+            type="password"
+            matInput
+            required
+            formControlName="password"
+            autocomplete="new-password"
+          />
           <mat-error>Password Required</mat-error>
         </mat-form-field>
         <br />
@@ -44,6 +68,7 @@
             matInput
             required
             formControlName="confirmPassword"
+            autocomplete="new-password"
           />
           <mat-error>Password Required</mat-error>
         </mat-form-field>
