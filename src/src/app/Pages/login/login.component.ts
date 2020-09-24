@@ -3,16 +3,22 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { FinanceApiRequest } from 'src/app/Services/finance-api.request.service';
 import { Router } from '@angular/router';
+import { ConfigService } from 'src/app/Services/config.service';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private config: ConfigService
+  ) {}
 
   loadingBar: boolean = false;
   error: string;
+  isDemo = this.config.getValue('IsDemo');
 
   loginForm = new FormGroup({
     username: new FormControl(null, [Validators.required]),

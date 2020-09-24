@@ -11,6 +11,12 @@
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <h1 class="title">Finance Manager</h1>
         <mat-hint>Welcome, To get started please login</mat-hint>
+        <div *ngIf="isDemo | async">
+          <br /><mat-error
+            >Use the demo account: username = "test" and password =
+            "test"</mat-error
+          >
+        </div>
         <br /><br />
 
         <mat-form-field appearance="fill">
@@ -48,9 +54,20 @@
         >
           Login
         </button>
-        <button mat-button type="button" [routerLink]="['/register']">
-          Register
-        </button>
+        <div
+          matTooltip="Register disabled in demo mode"
+          [matTooltipDisabled]="!(isDemo | async)"
+        >
+          <button
+            mat-button
+            type="button"
+            [routerLink]="['/register']"
+            [disabled]="isDemo | async"
+            matTooltip="test"
+          >
+            Register
+          </button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>

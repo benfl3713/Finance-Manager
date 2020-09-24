@@ -41,7 +41,6 @@ mat-card-content {
   width: 100%;
   position: absolute;
   background: url(/assets/city.jpg) no-repeat;
-  /* filter: blur(5px); */
   z-index: 1;
   -webkit-background-size: cover;
   -moz-background-size: cover;

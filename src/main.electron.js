@@ -1,21 +1,21 @@
 const { app, BrowserWindow } = require("electron");
-const url = require("url");
 const path = require("path");
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     webPreferences: {
       nodeIntegration: true,
     },
   });
 
-  mainWindow.loadFile(path.join(__dirname, `/dist/index.html`));
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.setMenu(null);
+
+  // mainWindow.loadFile(path.join(__dirname, `/dist/index.html`));
+  mainWindow.loadURL("file://" + path.join(__dirname, `/dist/index.html`));
 
   mainWindow.on("closed", function () {
     mainWindow = null;

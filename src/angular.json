@@ -36,7 +36,8 @@
               "./node_modules/angular-notifier/styles/types/type-success.css",
               "./node_modules/angular-notifier/styles/types/type-warning.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": ["jwt-decode"]
           },
           "configurations": {
             "production": {

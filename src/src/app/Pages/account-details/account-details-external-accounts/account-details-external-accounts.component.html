@@ -1,3 +1,21 @@
+<h1>External Account Settings</h1>
+<form [formGroup]="settingsForm" id="settingsForm">
+  <mat-form-field appearance="outline">
+    <mat-label>Auto Refresh Interval</mat-label>
+    <mat-select formControlName="refreshInterval">
+      <mat-option value="never">Never</mat-option>
+      <mat-option value="hourly">Hourly</mat-option>
+      <mat-option value="bidaily">12 Hours</mat-option>
+      <mat-option value="daily">Daily</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+
+  <mat-checkbox formControlName="generateAdjustments" color="primary"
+    >Generate Adjustment Transactions</mat-checkbox
+  >
+</form>
+
 <h1>Link External Account</h1>
 <mat-hint
   >Link your account with an external datafeed account so that you can

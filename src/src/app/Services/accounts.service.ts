@@ -27,4 +27,28 @@ export class AccountsService {
   getSpentThisWeek(accountId: string) {
     return this.financeApi.get<number>(`account/${accountId}/GetSpentThisWeek`);
   }
+
+  getAccountSettings(accountId: string) {
+    return this.financeApi.get<any>(`account/${accountId}/GetAccountSettings`);
+  }
+
+  setAccountSettings(accountSettings: AccountSettings) {
+    return this.financeApi.post<void>(
+      `account/${accountSettings.AccountID}/SetAccountSettings`,
+      JSON.stringify(accountSettings)
+    );
+  }
+}
+
+export interface AccountSettings {
+  AccountID: string;
+  RefreshInterval: RefreshIntervals;
+  GenerateAdjustments: string;
+}
+
+export enum RefreshIntervals {
+  Never,
+  hourly,
+  biDaily,
+  Daily,
 }

@@ -4,6 +4,10 @@
   "properties": {
     "FinanceApiUrl": {
       "type": "string"
+    },
+    "IsDemo": {
+      "type": "boolean",
+      "default": false
     }
   },
   "required": ["FinanceApiUrl"]

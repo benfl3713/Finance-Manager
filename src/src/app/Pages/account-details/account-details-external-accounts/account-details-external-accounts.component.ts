@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DatafeedsService } from 'src/app/Services/datafeeds.service';
 import { ActivatedRoute } from '@angular/router';
-import { AccountsService } from 'src/app/Services/accounts.service';
+import {
+  AccountSettings,
+  AccountsService,
+  RefreshIntervals,
+} from 'src/app/Services/accounts.service';
 import { IsLoadingService } from '@service-work/is-loading';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './account-details-external-accounts.component.html',
@@ -20,12 +25,19 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
   externalAccounts: any[] = [];
   displayedColumns: string[] = ['provider', 'vendor', 'accountName', 'actions'];
   disableActions: boolean = false;
+  accountId: string;
+
+  settingsForm: FormGroup = new FormGroup({
+    refreshInterval: new FormControl('never'),
+    generateAdjustments: new FormControl(true),
+  });
 
   ngOnInit(): void {
-    const accountId = this.route.snapshot.paramMap.get('id');
+    this.accountId = this.route.snapshot.paramMap.get('id');
     this.loadingSerivce.add({ key: ['default', 'load-external-accounts'] });
+    this.settingsForm.disable();
 
-    this.accountsService.getAccountById(accountId).subscribe({
+    this.accountsService.getAccountById(this.accountId).subscribe({
       next: (account) => {
         this.account = account;
         this.datafeedsService.getExternalAccounts().subscribe({
@@ -40,6 +52,24 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
         });
       },
       error: (ex) => alert(ex),
+    });
+
+    this.accountsService.getAccountSettings(this.accountId).subscribe({
+      next: (settings) => {
+        console.log(settings);
+        if (settings) {
+          this.settingsForm.controls['generateAdjustments'].setValue(
+            settings.GenerateAdjustments
+          );
+          this.settingsForm.controls['refreshInterval'].setValue(
+            (<string>settings.RefreshInterval).toLowerCase()
+          );
+        }
+        this.settingsForm.enable();
+        this.settingsForm.valueChanges.subscribe(() =>
+          this.saveAccountSettings()
+        );
+      },
     });
   }
 
@@ -83,5 +113,38 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
 
   disableUnlinkButton(externalAccount: any): boolean {
     return externalAccount.MappedAccount !== this.account.ID;
+  }
+
+  saveAccountSettings() {
+    this.loadingSerivce.add({ key: ['default', 'saveAccountSettings'] });
+    this.settingsForm.disable({ emitEvent: false });
+
+    var settings: AccountSettings = {
+      AccountID: this.accountId,
+      GenerateAdjustments: this.settingsForm.controls['generateAdjustments']
+        .value,
+      RefreshInterval: this.parseRefreshInterval(),
+    };
+
+    this.accountsService.setAccountSettings(settings).subscribe({
+      complete: () => {
+        this.loadingSerivce.remove({ key: ['default', 'saveAccountSettings'] });
+        this.settingsForm.enable({ emitEvent: false });
+      },
+    });
+  }
+
+  parseRefreshInterval(): RefreshIntervals {
+    console.log(this.settingsForm.controls['refreshInterval'].value);
+    switch (this.settingsForm.controls['refreshInterval'].value) {
+      case 'hourly':
+        return RefreshIntervals.hourly;
+      case 'bidaily':
+        return RefreshIntervals.biDaily;
+      case 'daily':
+        return RefreshIntervals.Daily;
+      default:
+        return RefreshIntervals.Never;
+    }
   }
 }

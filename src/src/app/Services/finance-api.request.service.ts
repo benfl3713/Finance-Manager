@@ -25,7 +25,7 @@ export class FinanceApiRequest {
   public static LoadBaseUrl(http: HttpClient): () => Promise<void> {
     return async () => {
       const config = await http
-        .get<any>('/assets/config.json')
+        .get<any>('assets/config.json')
         .toPromise()
         .catch(() => null);
       if (config && config.FinanceApiUrl && config.FinanceApiUrl !== '') {
