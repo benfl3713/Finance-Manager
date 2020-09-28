@@ -63,6 +63,9 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
       ).map((d) => this.datePipe.transform(d, 'yyyy-MM-dd'));
     }
 
+    this.chart.options.responsive = this.chart.options.legend.display = this.chart.options.maintainAspectRatio = !this
+      .isMobile;
+
     this.chart.update();
 
     this.hasLoaded = true;
