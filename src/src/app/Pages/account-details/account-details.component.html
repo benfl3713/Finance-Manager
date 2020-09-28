@@ -1,5 +1,8 @@
 <div *ngIf="account$ | async; let account">
   <div style="margin-bottom: 10px">
+    <mat-hint *ngIf="isAccountMapped | async"
+      >Last Refreshed: {{ account.LastRefreshed | date: "HH:mm dd MMMM" }}<br
+    /></mat-hint>
     <button
       *ngIf="isAccountMapped | async"
       mat-flat-button

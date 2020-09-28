@@ -52,9 +52,9 @@ export class AccountDetailsComponent implements OnInit {
 
   spentThisWeek: number;
 
-  isAccountMapped = this.datafeedsService.doesAccountHaveExternalMappings(
-    this.id
-  );
+  isAccountMapped = this.datafeedsService
+    .doesAccountHaveExternalMappings(this.id)
+    .pipe(shareReplay(1));
 
   accountNotFound = false;
 
