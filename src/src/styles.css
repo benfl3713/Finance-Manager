@@ -31,3 +31,7 @@ button:disabled {
   outline: none;
   box-shadow: none;
 }
+
+.mobileChart {
+  min-height: 400px;
+}

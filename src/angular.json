@@ -37,7 +37,11 @@
               "./node_modules/angular-notifier/styles/types/type-warning.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["jwt-decode"]
+            "allowedCommonJsDependencies": [
+              "jwt-decode",
+              "chartjs-plugin-zoom",
+              "chart.js"
+            ]
           },
           "configurations": {
             "production": {
