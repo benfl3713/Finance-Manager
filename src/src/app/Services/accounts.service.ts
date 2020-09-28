@@ -49,6 +49,7 @@ export interface AccountSettings {
 export enum RefreshIntervals {
   Never,
   hourly,
+  sixHours,
   biDaily,
   Daily,
 }

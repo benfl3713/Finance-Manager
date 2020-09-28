@@ -143,6 +143,8 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
         return RefreshIntervals.biDaily;
       case 'daily':
         return RefreshIntervals.Daily;
+      case 'sixHours':
+        return RefreshIntervals.sixHours;
       default:
         return RefreshIntervals.Never;
     }
