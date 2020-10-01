@@ -6,6 +6,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { FinanceApiRequest } from '../Services/finance-api.request.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TitleService } from '../Services/title.service';
+import { MenuItems } from './MenuItems';
 
 @Component({
   selector: 'app-navigation',
@@ -34,6 +35,7 @@ export class NavigationComponent {
 
   page_title$ = this.titleService.title;
   showBackButton$ = this.titleService.showBackButton;
+  menuItems = MenuItems;
 
   ngOnInit(): void {}
 

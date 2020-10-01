@@ -68,48 +68,18 @@
   >
     <mat-toolbar color="primary"> </mat-toolbar>
     <mat-nav-list>
-      <a
-        mat-list-item
-        class="menu-item"
-        [routerLink]="['/']"
-        [routerLinkActive]="['mat-primary-background']"
-        [routerLinkActiveOptions]="{ exact: true }"
-        (click)="PageChanged()"
-        ><span class="fas fa-home"></span> Dashboard</a
-      >
-      <a
-        mat-list-item
-        class="menu-item"
-        [routerLink]="['/accounts']"
-        [routerLinkActive]="['mat-primary-background']"
-        (click)="PageChanged()"
-        ><span class="fas fa-user"></span> Accounts</a
-      >
-      <a
-        mat-list-item
-        class="menu-item"
-        [routerLink]="['/transactions']"
-        [routerLinkActive]="['mat-primary-background']"
-        (click)="PageChanged()"
-        ><span class="fas fa-money-check-alt"></span> Transactions</a
-      >
-      <a
-        mat-list-item
-        class="menu-item"
-        (click)="PageChanged()"
-        [routerLinkActive]="['mat-primary-background']"
-        matTooltip="Future Feature to be Implemented"
-        ><span class="fas fa-funnel-dollar"></span> Budgets</a
-      >
-      <a
-        mat-list-item
-        class="menu-item"
-        (click)="PageChanged()"
-        [routerLink]="['/datafeeds']"
-        [routerLinkActive]="['mat-primary-background']"
-        matTooltip="Future Feature to be Implemented"
-        ><span class="fas fa-rss"></span> Datafeeds</a
-      >
+      <div *ngFor="let item of menuItems">
+        <a
+          mat-list-item
+          class="menu-item"
+          [routerLink]="item.route"
+          [routerLinkActive]="['mat-primary-background']"
+          [routerLinkActiveOptions]="item.routerLinkActiveOptions || {}"
+          (click)="PageChanged()"
+          [matTooltip]="item.matTooltip"
+          ><span [class]="item.icon"></span> {{ item.name }}</a
+        >
+      </div>
     </mat-nav-list>
   </mat-sidenav>
 
