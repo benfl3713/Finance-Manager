@@ -1,3 +1,15 @@
-<mat-card class="mat-elevation-z3">
-  <app-balance-history-chart></app-balance-history-chart>
-</mat-card>
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutGap="20px"
+  fxLayoutAlign="center"
+  style="min-height: 400px"
+>
+  <mat-card class="mat-elevation-z3" fxFlex="50%">
+    <app-balance-history-chart></app-balance-history-chart>
+  </mat-card>
+
+  <mat-card class="mat-elevation-z3" fxFlex="50%">
+    <app-spent-per-category-chart></app-spent-per-category-chart>
+  </mat-card>
+</div>

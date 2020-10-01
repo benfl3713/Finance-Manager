@@ -6,12 +6,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { BalanceHistoryChartComponent } from './widgets/balance-history-chart/balance-history-chart.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { SpentPerCategoryChartComponent } from './widgets/spent-per-category-chart/spent-per-category-chart.component';
 
 @NgModule({
   declarations: [
     TransactionFormComponent,
     BalanceHistoryChartComponent,
     LoadingSpinnerComponent,
+    SpentPerCategoryChartComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +27,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     TransactionFormComponent,
     BalanceHistoryChartComponent,
     LoadingSpinnerComponent,
+    SpentPerCategoryChartComponent,
   ],
 })
 export class ComponentModule {}

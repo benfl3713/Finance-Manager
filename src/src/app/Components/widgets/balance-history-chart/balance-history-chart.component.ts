@@ -52,9 +52,10 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
       chartConfig.data.datasets.push(dataset);
     });
 
-    const systemStatisticsChart = <HTMLCanvasElement>(
-      document.getElementById('balanceHistoryChart')
-    );
+    const systemStatisticsChart = document.getElementById(
+      'balanceHistoryChart'
+    ) as HTMLCanvasElement;
+    systemStatisticsChart.height = 250;
     this.chart = new Chart(systemStatisticsChart.getContext('2d'), chartConfig);
 
     if (Object.values(data).length > 0) {
@@ -65,6 +66,14 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
 
     this.chart.options.responsive = this.chart.options.legend.display = this.chart.options.maintainAspectRatio = !this
       .isMobile;
+
+    this.chart.options.responsive = true;
+    this.chart.options.maintainAspectRatio = false;
+
+    this.chart.options.title = {
+      text: 'Balance History',
+      display: true,
+    };
 
     this.chart.update();
 

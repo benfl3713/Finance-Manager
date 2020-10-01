@@ -10,4 +10,8 @@ export class StatisticsService {
   getBalanceHistory() {
     return this.financeApi.get<any>('statistics/GetBalanceHistory');
   }
+
+  getSpentAmountPerCategory() {
+    return this.financeApi.get<any>('statistics/GetSpentAmountPerCategory');
+  }
 }
