@@ -56,13 +56,12 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
 
     this.accountsService.getAccountSettings(this.accountId).subscribe({
       next: (settings) => {
-        console.log(settings);
         if (settings) {
-          this.settingsForm.controls['generateAdjustments'].setValue(
+          this.settingsForm.controls.generateAdjustments.setValue(
             settings.GenerateAdjustments
           );
-          this.settingsForm.controls['refreshInterval'].setValue(
-            (<string>settings.RefreshInterval).toLowerCase()
+          this.settingsForm.controls.refreshInterval.setValue(
+            (settings.RefreshInterval as string).toLowerCase()
           );
         }
         this.settingsForm.enable();
@@ -73,7 +72,7 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
     });
   }
 
-  mapAccount(externalAccount) {
+  mapAccount(externalAccount): void {
     this.disableActions = true;
     this.loadingSerivce.add({ key: ['default', 'map-account'] });
     this.datafeedsService
@@ -91,7 +90,7 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
       });
   }
 
-  unMapAccount(externalAccount) {
+  unMapAccount(externalAccount): void {
     this.disableActions = true;
     this.loadingSerivce.add({ key: ['default', 'unmap-account'] });
     this.datafeedsService
@@ -115,11 +114,11 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
     return externalAccount.MappedAccount !== this.account.ID;
   }
 
-  saveAccountSettings() {
+  saveAccountSettings(): void {
     this.loadingSerivce.add({ key: ['default', 'saveAccountSettings'] });
     this.settingsForm.disable({ emitEvent: false });
 
-    var settings: AccountSettings = {
+    const settings: AccountSettings = {
       AccountID: this.accountId,
       GenerateAdjustments: this.settingsForm.controls['generateAdjustments']
         .value,
@@ -135,8 +134,8 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
   }
 
   parseRefreshInterval(): RefreshIntervals {
-    console.log(this.settingsForm.controls['refreshInterval'].value);
-    switch (this.settingsForm.controls['refreshInterval'].value) {
+    console.log(this.settingsForm.controls.refreshInterval.value);
+    switch (this.settingsForm.controls.refreshInterval.value) {
       case 'hourly':
         return RefreshIntervals.hourly;
       case 'bidaily':

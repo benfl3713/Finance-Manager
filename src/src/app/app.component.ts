@@ -5,10 +5,15 @@ import {
   RouteConfigLoadStart,
   RouteConfigLoadEnd,
   NavigationStart,
+  ActivatedRoute,
+  NavigationEnd,
+  ActivatedRouteSnapshot,
+  ActivationEnd,
 } from '@angular/router';
 import { IsLoadingService } from '@service-work/is-loading';
 import { TitleService } from './Services/title.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +28,8 @@ export class AppComponent {
     private updates: SwUpdate,
     private loadingService: IsLoadingService,
     private titleSerivce: TitleService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof RouteConfigLoadStart) {
@@ -38,6 +44,24 @@ export class AppComponent {
         this.titleSerivce.showBackButton.next(true);
       }
     });
+
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        map(() => {
+          let child = this.activatedRoute.firstChild;
+          while (child.firstChild) {
+            child = child.firstChild;
+          }
+          if (child.snapshot.data['title']) {
+            return child.snapshot.data['title'];
+          }
+          return null;
+        })
+      )
+      .subscribe((ttl: string) => {
+        this.titleSerivce.setTitle(ttl);
+      });
 
     this.CheckForUpdate();
   }

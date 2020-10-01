@@ -8,7 +8,6 @@ import {
 import { TransactionsService } from 'src/app/Services/transactions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFormComponent } from 'src/app/Components/transaction-form/transaction-form.component';
-import { TitleService } from 'src/app/Services/title.service';
 
 @Component({
   templateUrl: './transaction-details.component.html',
@@ -18,11 +17,8 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
   constructor(
     private transactionService: TransactionsService,
     private route: ActivatedRoute,
-    private router: Router,
-    private titleService: TitleService
-  ) {
-    this.titleService.setTitle('Transaction Details');
-  }
+    private router: Router
+  ) {}
 
   @ViewChild(TransactionFormComponent, { static: false })
   private transactionForm: TransactionFormComponent;

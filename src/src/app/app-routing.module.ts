@@ -21,10 +21,12 @@ const authorisedRoutes: Routes = [
   {
     path: 'accounts',
     component: AccountsComponent,
+    data: { title: 'Accounts' },
   },
   {
     path: 'transactions',
     component: TransactionsComponent,
+    data: { title: 'Transactions' },
   },
   {
     path: 'accounts/:id',
@@ -33,6 +35,7 @@ const authorisedRoutes: Routes = [
   {
     path: 'accounts/:id/external-account',
     component: AccountDetailsExternalAccountsComponent,
+    data: { title: 'External Accounts' },
   },
   {
     path: 'transactions/:id',
@@ -51,6 +54,7 @@ const authorisedRoutes: Routes = [
       import('./Pages/datafeeds/datafeeds.module').then(
         (m) => m.DatafeedsModule
       ),
+    data: { title: 'Datafeeds' },
   },
 ];
 
