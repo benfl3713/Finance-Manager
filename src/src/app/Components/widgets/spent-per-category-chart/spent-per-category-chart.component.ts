@@ -46,9 +46,9 @@ export class SpentPerCategoryChartComponent implements OnInit, OnDestroy {
     chartConfig.options.tooltips = {
       callbacks: {
         label: (tooltipItems, data) =>
-          this.currencyPipe.transform(
+          ` ${data.labels[tooltipItems.index]}   ${this.currencyPipe.transform(
             data.datasets[0].data[tooltipItems.index]
-          ),
+          )}`,
       },
     };
 

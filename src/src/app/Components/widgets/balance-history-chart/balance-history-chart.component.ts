@@ -80,9 +80,20 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
       },
     ];
 
+    // chartConfig.options.tooltips.callbacks = {
+    //   label: (tooltipItems, data) =>
+    //     `${tooltipItems.legend} - ${this.currencyPipe.transform(
+    //       tooltipItems.yLabel.toString()
+    //     )}`,
+    // };
+
     chartConfig.options.tooltips.callbacks = {
-      label: (tooltipItems) =>
-        this.currencyPipe.transform(tooltipItems.yLabel.toString()),
+      label: (tooltipItems, data) => {
+        console.log(tooltipItems, data);
+        return ` ${
+          data.datasets[tooltipItems.datasetIndex].label
+        }  ${this.currencyPipe.transform(tooltipItems.yLabel.toString())}`;
+      },
     };
 
     Object.values(data).forEach((accountData) => {
