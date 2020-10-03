@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { SpentPerCategoryChartComponent } from './widgets/spent-per-category-cha
     MaterialModule,
     FlexLayoutModule,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, CurrencyPipe],
   exports: [
     TransactionFormComponent,
     BalanceHistoryChartComponent,

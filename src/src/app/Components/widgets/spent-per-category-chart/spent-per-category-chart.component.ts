@@ -3,6 +3,8 @@ import { StatisticsService } from 'src/app/Services/statistics.service';
 import { PieChart } from '../../../Models/pie.chart';
 import * as Chart from 'chart.js';
 import 'chartjs-plugin-colorschemes';
+import { MatDialog } from '@angular/material/dialog';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-spent-per-category-chart',
@@ -10,7 +12,11 @@ import 'chartjs-plugin-colorschemes';
   styleUrls: ['./spent-per-category-chart.component.css'],
 })
 export class SpentPerCategoryChartComponent implements OnInit, OnDestroy {
-  constructor(private statisticsService: StatisticsService) {}
+  constructor(
+    private statisticsService: StatisticsService,
+    private dialog: MatDialog,
+    private currencyPipe: CurrencyPipe
+  ) {}
 
   isMobile: boolean = true;
   hasLoaded: boolean = false;
@@ -37,19 +43,26 @@ export class SpentPerCategoryChartComponent implements OnInit, OnDestroy {
     chartConfig.data.datasets.push(dataset);
     chartConfig.data.labels = Object.keys(data);
 
+    chartConfig.options.tooltips = {
+      callbacks: {
+        label: (tooltipItems, data) =>
+          this.currencyPipe.transform(
+            data.datasets[0].data[tooltipItems.index]
+          ),
+      },
+    };
+
     const spentPerCategoryChart = document.getElementById(
       'spentPerCategoryChart'
     ) as HTMLCanvasElement;
 
     this.chart = new Chart(spentPerCategoryChart.getContext('2d'), chartConfig);
 
-    this.chart.options.responsive = this.chart.options.legend.display = this.chart.options.maintainAspectRatio = !this
-      .isMobile;
+    // this.chart.options.responsive = this.chart.options.legend.display = this.chart.options.maintainAspectRatio = !this
+    //   .isMobile;
 
-    this.chart.options.title = {
-      text: 'Spent Per Category',
-      display: true,
-    };
+    this.chart.options.maintainAspectRatio = false;
+    this.chart.options.responsive = true;
 
     this.chart.update();
 

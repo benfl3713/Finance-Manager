@@ -4,8 +4,10 @@ import * as Chart from 'chart.js';
 import 'chartjs-plugin-colorschemes';
 import 'chartjs-plugin-zoom';
 import { StatisticsService } from 'src/app/Services/statistics.service';
-import { DatePipe } from '@angular/common';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { FormControl } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-balance-history-chart',
@@ -16,19 +18,42 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
   constructor(
     private statisticsService: StatisticsService,
     private datePipe: DatePipe,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private currencyPipe: CurrencyPipe
   ) {}
 
   chart;
   hasLoaded: boolean = false;
   isMobile: boolean = this.deviceService.isMobile();
+  dateRange = new FormControl('year');
+  dateRangeSub: Subscription;
 
   ngOnInit(): void {
     this.loadData();
+    this.dateRangeSub = this.dateRange.valueChanges.subscribe(() =>
+      this.loadData()
+    );
   }
 
   loadData() {
-    this.statisticsService.getBalanceHistory().subscribe({
+    this.hasLoaded = false;
+    this.chart?.destroy();
+    let dateFrom = new Date();
+    switch (this.dateRange.value) {
+      case 'halfYear':
+        dateFrom.setMonth(dateFrom.getMonth() - 6);
+        break;
+      case 'month':
+        dateFrom.setMonth(dateFrom.getMonth() - 1);
+        break;
+      case 'week':
+        dateFrom.setDate(dateFrom.getDate() - 7);
+        break;
+      default:
+        dateFrom.setFullYear(dateFrom.getFullYear() - 1);
+        break;
+    }
+    this.statisticsService.getBalanceHistory(dateFrom).subscribe({
       next: (data) => this.buildChart(data),
     });
   }
@@ -40,6 +65,24 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
       point: {
         radius: 0,
       },
+    };
+
+    const dateFrom = this.dateRange.value;
+    chartConfig.options.scales.xAxes[0].time.unit =
+      dateFrom == 'week' || dateFrom == 'month' ? 'day' : 'month';
+
+    chartConfig.options.scales.yAxes = [
+      {
+        ticks: {
+          beginAtZero: true,
+          callback: (value) => this.currencyPipe.transform(value),
+        },
+      },
+    ];
+
+    chartConfig.options.tooltips.callbacks = {
+      label: (tooltipItems) =>
+        this.currencyPipe.transform(tooltipItems.yLabel.toString()),
     };
 
     Object.values(data).forEach((accountData) => {
@@ -55,7 +98,6 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
     const systemStatisticsChart = document.getElementById(
       'balanceHistoryChart'
     ) as HTMLCanvasElement;
-    systemStatisticsChart.height = 250;
     this.chart = new Chart(systemStatisticsChart.getContext('2d'), chartConfig);
 
     if (Object.values(data).length > 0) {
@@ -70,11 +112,6 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
     this.chart.options.responsive = true;
     this.chart.options.maintainAspectRatio = false;
 
-    this.chart.options.title = {
-      text: 'Balance History',
-      display: true,
-    };
-
     this.chart.update();
 
     this.hasLoaded = true;
@@ -83,5 +120,6 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // Destory chart when component is destroyed
     this.chart.destroy();
+    this.dateRangeSub.unsubscribe();
   }
 }

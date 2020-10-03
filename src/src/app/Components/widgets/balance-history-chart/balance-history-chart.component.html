@@ -1,4 +1,15 @@
+<loading-spinner [isLoading]="!hasLoaded"></loading-spinner>
+<div *ngIf="hasLoaded">
+  <div class="centre-text">Balance History</div>
+  <mat-form-field class="rangeDropdown">
+    <mat-select [formControl]="dateRange">
+      <mat-option value="year">Year</mat-option>
+      <mat-option value="halfYear">6 Months</mat-option>
+      <mat-option value="month">Month</mat-option>
+      <mat-option value="week">Week</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div [ngClass]="{ mobileChart: isMobile }">
-  <loading-spinner [isLoading]="!hasLoaded"></loading-spinner>
   <canvas id="balanceHistoryChart"></canvas>
 </div>

@@ -11,5 +11,6 @@ export class PieChart {
         scheme: 'brewer.Dark2-7',
       },
     },
+    tooltips: {},
   };
 }
