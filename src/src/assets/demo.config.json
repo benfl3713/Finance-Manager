@@ -1,4 +1,4 @@
 {
   "$schema": "./config.schema.json",
-  "FinanceApiUrl": "null"
+  "FinanceApiUrl": "https://demo.finance.api.benfl3713.ddns.info/api"
 }
