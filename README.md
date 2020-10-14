@@ -20,6 +20,10 @@ This is a webapp that allows multiple users to add accounts and transactions etc
 
 - angular front end with a angular material theme
 
+# Demo  
+
+To view the demo site just visit https://demo-finance-manager-benfl3713.netlify.app
+
 # Need Help?
 
 - If you have any questions feel free to raise an issue or email me at **benfl3713@gmail.com**
