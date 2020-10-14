@@ -6,6 +6,8 @@ import { DatafeedsService } from 'src/app/Services/datafeeds.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { of } from 'rxjs';
 import { TitleService } from 'src/app/Services/title.service';
+import { NotifierService } from 'angular-notifier';
+import { ConfigService } from 'src/app/Services/config.service';
 
 @Component({
   templateUrl: './account-details.component.html',
@@ -18,7 +20,9 @@ export class AccountDetailsComponent implements OnInit {
     private router: Router,
     private datafeedsService: DatafeedsService,
     private loadingService: IsLoadingService,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private notifier: NotifierService,
+    private configService: ConfigService
   ) {
     this.titleService.showBackButton.next(true);
   }
@@ -81,7 +85,13 @@ export class AccountDetailsComponent implements OnInit {
     }
   }
 
-  delete(accountId: string) {
+  async delete(accountId: string) {
+    var isDemo = await this.configService.getValue('IsDemo');
+    if (isDemo === true) {
+      this.notifier.notify('error', 'Cannot delete account in demo mode');
+      return;
+    }
+
     if (
       confirm(
         'Are you sure you want to delete this account.\nIt will delete all associated transactions'

@@ -8,6 +8,8 @@ import {
 import { TransactionsService } from 'src/app/Services/transactions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFormComponent } from 'src/app/Components/transaction-form/transaction-form.component';
+import { ConfigService } from 'src/app/Services/config.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   templateUrl: './transaction-details.component.html',
@@ -17,7 +19,9 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
   constructor(
     private transactionService: TransactionsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private notifier: NotifierService,
+    private configService: ConfigService
   ) {}
 
   @ViewChild(TransactionFormComponent, { static: false })
@@ -86,7 +90,13 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
     this.resetIcon = true;
   }
 
-  delete() {
+  async delete() {
+    var isDemo = await this.configService.getValue('IsDemo');
+    if (isDemo === true) {
+      this.notifier.notify('error', 'Cannot delete transaction in demo mode');
+      return;
+    }
+
     if (confirm('Are you sure you want to delete this transaction')) {
       this.transactionService
         .deleteTransaction(this.id)
