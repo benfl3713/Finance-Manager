@@ -18,14 +18,20 @@
       >
     </mat-card-content>
     <mat-card-actions>
-      <button
-        mat-stroked-button
-        color="primary"
-        [routerLink]="['/datafeeds/truelayer']"
-        class="setup-button"
+      <div
+        matTooltip="Truelayer Datafeed disabled in demo mode"
+        [matTooltipDisabled]="(isDemo$ | async) !== true"
       >
-        Setup
-      </button>
+        <button
+          mat-stroked-button
+          color="primary"
+          [routerLink]="['/datafeeds/truelayer']"
+          class="setup-button"
+          [disabled]="(isDemo$ | async) === true"
+        >
+          Setup
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

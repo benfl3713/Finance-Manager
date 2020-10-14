@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from 'src/app/Services/config.service';
 
 @Component({
   selector: 'app-datafeeds',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./datafeeds.component.css'],
 })
 export class DatafeedsComponent implements OnInit {
-  constructor() {}
+  constructor(private configService: ConfigService) {}
+
+  isDemo$ = this.configService.getValue('IsDemo');
 
   ngOnInit(): void {}
 }
