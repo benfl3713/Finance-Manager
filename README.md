@@ -1,6 +1,7 @@
 # Finance-Manager
 
 ![](https://github.com/benfl3713/Finance-Manager/workflows/Pipeline/badge.svg?branch=master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6851da60-c445-4cc1-beb3-7f0ff4d69943/deploy-status)](https://app.netlify.com/sites/demo-finance-manager-benfl3713/deploys)
 
 Personal Finance Manager Web App
 
