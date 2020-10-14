@@ -53,6 +53,9 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
         dateFrom.setFullYear(dateFrom.getFullYear() - 1);
         break;
     }
+    dateFrom.setHours(0);
+    dateFrom.setMinutes(0);
+
     this.statisticsService.getBalanceHistory(dateFrom).subscribe({
       next: (data) => this.buildChart(data),
     });
