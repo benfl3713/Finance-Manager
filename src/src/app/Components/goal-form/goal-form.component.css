@@ -1,0 +1,16 @@
+mat-form-field {
+  width: 100%;
+}
+button {
+  margin-right: 10px;
+}
+
+@media (min-width: 601px) {
+  .row {
+    margin-left: 2px;
+  }
+}
+
+form {
+  max-width: 1000px;
+}

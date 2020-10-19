@@ -1,0 +1,50 @@
+<div style="margin-bottom: 15px; display: inline-flex">
+  <a mat-flat-button color="primary" [routerLink]="['/add/goal']">Add</a>
+</div>
+
+<div *ngFor="let goal of goals$ | async">
+  <mat-card class="goal-card mat-elevation-z0 outline">
+    <mat-card-title class="goalTitle"
+      >{{ goal.AccountName }} - {{ goal.Name }}</mat-card-title
+    >
+    <mat-card-content>
+      <div class="goal-card-row row">
+        <span class="goal-amounts col-md-10 col-sm-12" style="margin-top: 35px"
+          >{{ goal.CurrentAmount | currency }} /
+          {{ goal.GoalAmount | currency }}</span
+        >
+        <div class="progress-gauge col-md-1 col-sm-12">
+          <div class="spinner-background">
+            {{ goalProgress.value | number: "1.0-0" }}%
+          </div>
+          <div
+            [ngClass]="{
+              'green-progress': goalProgress.value >= 66,
+              'yellow-progress':
+                goalProgress.value >= 33 && goalProgress.value < 66,
+              'red-progress': goalProgress.value < 33
+            }"
+          >
+            <mat-spinner
+              #goalProgress
+              color="primary"
+              mode="determinate"
+              [value]="(goal.CurrentAmount / goal.GoalAmount) * 100"
+            >
+            </mat-spinner>
+          </div>
+        </div>
+      </div>
+      <mat-hint>By: {{ goal.Date | date: "dd/MM/yyyy" }}</mat-hint>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <a mat-flat-button color="primary" [routerLink]="['/goals', goal.Id]"
+        >Edit</a
+      >
+      <button mat-stroked-button color="warn" (click)="deleteGoal(goal.Id)">
+        Delete
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

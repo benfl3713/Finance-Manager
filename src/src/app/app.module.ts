@@ -32,6 +32,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PipesModule } from './Pipes/pipes.module';
 import { AccountDetailsExternalAccountsComponent } from './Pages/account-details/account-details-external-accounts/account-details-external-accounts.component';
+import { GoalsComponent } from './Pages/goals/goals.component';
+import { AddGoalComponent } from './Pages/goals/add-goal/add-goal.component';
+import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { AccountDetailsExternalAccountsComponent } from './Pages/account-details
     AddAccountComponent,
     AddTransactionComponent,
     AccountDetailsExternalAccountsComponent,
+    GoalsComponent,
+    AddGoalComponent,
+    EditGoalComponent,
   ],
   imports: [
     BrowserModule,

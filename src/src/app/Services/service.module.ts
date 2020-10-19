@@ -5,6 +5,7 @@ import { FinanceApiRequest } from './finance-api.request.service';
 import { TitleService } from './title.service';
 import { ConfigService } from './config.service';
 import { StatisticsService } from './statistics.service';
+import { GoalsService } from './goals.service';
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,7 @@ import { StatisticsService } from './statistics.service';
     TitleService,
     ConfigService,
     StatisticsService,
+    GoalsService,
   ],
 })
 export class ServiceModule {}

@@ -14,6 +14,9 @@ import { AddAccountComponent } from './Pages/add/add-account/add-account.compone
 import { AddTransactionComponent } from './Pages/add/add-transaction/add-transaction.component';
 import { AccountDetailsExternalAccountsComponent } from './Pages/account-details/account-details-external-accounts/account-details-external-accounts.component';
 import { ErrorPageComponent } from './Components/error-page/error-page.component';
+import { GoalsComponent } from './Pages/goals/goals.component';
+import { AddGoalComponent } from './Pages/goals/add-goal/add-goal.component';
+import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
 
 const authorisedRoutes: Routes = [
   {
@@ -57,6 +60,21 @@ const authorisedRoutes: Routes = [
         (m) => m.DatafeedsModule
       ),
     data: { title: 'Datafeeds' },
+  },
+  {
+    path: 'goals',
+    component: GoalsComponent,
+    data: { title: 'Goals' },
+  },
+  {
+    path: 'add/goal',
+    component: AddGoalComponent,
+    data: { title: 'Add Goal' },
+  },
+  {
+    path: 'goals/:id',
+    component: EditGoalComponent,
+    data: { title: 'Edit Goal' },
   },
 ];
 

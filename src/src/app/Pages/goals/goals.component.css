@@ -1,0 +1,51 @@
+.goal-amounts {
+  font-size: 58px;
+  font-weight: lighter;
+}
+
+@media (max-width: 385px) {
+  .goal-amounts {
+    font-size: 25px;
+  }
+}
+
+.goalTitle {
+  font-weight: 300;
+}
+
+/* .goal-card-row {
+  display: inline-block;
+} */
+
+.progress-gauge .green-progress ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #3dc461;
+}
+
+.progress-gauge .yellow-progress ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #f5f118;
+}
+
+.progress-gauge .red-progress ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: red;
+}
+
+.progress-gauge .spinner-background {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  line-height: 80px;
+  text-align: center;
+  overflow: hidden;
+  border-color: rgba(103, 58, 183, 0.12);
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 10px;
+  font-size: 25px;
+}
+
+.goal-card {
+  margin-bottom: 20px;
+}

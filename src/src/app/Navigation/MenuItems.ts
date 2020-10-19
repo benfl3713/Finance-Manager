@@ -22,6 +22,11 @@ export const MenuItems = [
   //   matTooltip: 'Future Feature to be Implemented',
   // },
   {
+    name: 'Goals',
+    icon: 'fas fa-balance-scale',
+    route: '/goals',
+  },
+  {
     name: 'Datafeeds',
     icon: 'fas fa-rss',
     route: '/datafeeds',

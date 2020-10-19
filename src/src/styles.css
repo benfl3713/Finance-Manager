@@ -35,3 +35,7 @@ button:disabled {
 .mobileChart {
   min-height: 400px;
 }
+
+.outline {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
