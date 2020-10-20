@@ -31,6 +31,10 @@ export class AuthGuard implements CanActivate {
   }
 
   denyAccess(redirectUrl: string): boolean {
+    if (redirectUrl === '/') {
+      redirectUrl = null;
+    }
+
     this.router.navigate(['login'], { queryParams: { redirect: redirectUrl } });
     return false;
   }
