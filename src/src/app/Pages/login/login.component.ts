@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/Services/auth.service';
 import { FinanceApiRequest } from 'src/app/Services/finance-api.request.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfigService } from 'src/app/Services/config.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private config: ConfigService
+    private config: ConfigService,
+    private route: ActivatedRoute
   ) {}
 
   loadingBar: boolean = false;
@@ -39,7 +40,11 @@ export class LoginComponent implements OnInit {
       next: (token) => {
         if (token) {
           FinanceApiRequest.setToken(token);
-          this.router.navigate(['']);
+          if (this.route.snapshot.queryParams['redirect']) {
+            this.router.navigate([this.route.snapshot.queryParams['redirect']]);
+          } else {
+            this.router.navigate(['']);
+          }
         }
         this.error = 'Username or Password Invalid';
       },

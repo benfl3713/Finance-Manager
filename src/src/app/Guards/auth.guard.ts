@@ -13,24 +13,25 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    console.log(state);
     if (FinanceApiRequest.Token) {
       const token = jwt_decode(FinanceApiRequest.Token);
       const expirary = new Date(token.exp * 1000);
       if (expirary < new Date()) {
-        return this.denyAccess();
+        return this.denyAccess(state.url);
       }
 
       return true;
     }
-    return this.denyAccess();
+    return this.denyAccess(state.url);
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.canActivate(route, state);
   }
 
-  denyAccess(): boolean {
-    this.router.navigate(['login']);
+  denyAccess(redirectUrl: string): boolean {
+    this.router.navigate(['login'], { queryParams: { redirect: redirectUrl } });
     return false;
   }
 }
