@@ -41,3 +41,8 @@ mat-nav-list .menu-item:focus {
   background-color: mat-color($mat-blue, A700) !important;
   color: white !important;
 }
+
+mat-nav-list .menu-item:hover {
+  color: mat-color($mat-blue, A700) !important;
+  background-color: white;
+}

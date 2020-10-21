@@ -92,10 +92,14 @@ export class TransactionFormComponent implements OnInit {
     }
   }
 
-  accountComparer(a1, a2) {
-    if (!a1 || !a2) {
-      return false;
-    }
-    return a1.AccountName == a2.AccountName && a1.AccountId == a2.AccountId;
+  compareAccounts(a1, a2) {
+    return accountComparer(a1, a2);
   }
+}
+
+export function accountComparer(a1, a2) {
+  if (!a1 || !a2) {
+    return false;
+  }
+  return a1.AccountName == a2.AccountName && a1.AccountId == a2.AccountId;
 }

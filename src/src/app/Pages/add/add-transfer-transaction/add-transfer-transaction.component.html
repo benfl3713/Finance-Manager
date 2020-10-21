@@ -1,0 +1,43 @@
+<div>
+  <h1>Add Transfer Transaction:</h1>
+  <app-transaction-form
+    (save)="save($event)"
+    hideAccountSelector="true"
+    [parentValid]="transferForm.valid"
+  >
+    <form accountfields [formGroup]="transferForm" ngNativeValidate>
+      <mat-form-field appearance="outline">
+        <mat-label>Account From</mat-label>
+        <mat-select
+          formControlName="accountFrom"
+          required
+          [compareWith]="compareAccounts"
+        >
+          <mat-option
+            *ngFor="let account of accounts$ | async"
+            [value]="account"
+          >
+            {{ account.AccountName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field appearance="outline">
+        <mat-label>Account To</mat-label>
+        <mat-select
+          formControlName="accountTo"
+          required
+          [compareWith]="compareAccounts"
+        >
+          <mat-option
+            *ngFor="let account of accounts$ | async"
+            [value]="account"
+          >
+            {{ account.AccountName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </app-transaction-form>
+</div>

@@ -12,7 +12,7 @@
       <mat-select
         formControlName="account"
         required
-        [compareWith]="accountComparer"
+        [compareWith]="compareAccounts"
       >
         <mat-option *ngFor="let account of accounts$ | async" [value]="account">
           {{ account.AccountName }}
@@ -21,6 +21,8 @@
     </mat-form-field>
     <br />
   </div>
+
+  <ng-content select="[accountfields]"></ng-content>
 
   <mat-form-field appearance="outline">
     <mat-label>Amount</mat-label>
