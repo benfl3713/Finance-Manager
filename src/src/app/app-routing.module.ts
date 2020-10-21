@@ -17,6 +17,7 @@ import { ErrorPageComponent } from './Components/error-page/error-page.component
 import { GoalsComponent } from './Pages/goals/goals.component';
 import { AddGoalComponent } from './Pages/goals/add-goal/add-goal.component';
 import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
+import { AddSplitTransactionComponent } from './Pages/add/add-split-transaction/add-split-transaction.component';
 
 const authorisedRoutes: Routes = [
   {
@@ -51,6 +52,12 @@ const authorisedRoutes: Routes = [
     children: [
       { path: 'account', component: AddAccountComponent },
       { path: 'transaction', component: AddTransactionComponent },
+      { path: 'transaction/split', component: AddSplitTransactionComponent },
+      {
+        path: 'goal',
+        component: AddGoalComponent,
+        data: { title: 'Add Goal' },
+      },
     ],
   },
   {
@@ -65,11 +72,6 @@ const authorisedRoutes: Routes = [
     path: 'goals',
     component: GoalsComponent,
     data: { title: 'Goals' },
-  },
-  {
-    path: 'add/goal',
-    component: AddGoalComponent,
-    data: { title: 'Add Goal' },
   },
   {
     path: 'goals/:id',

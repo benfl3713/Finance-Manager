@@ -18,13 +18,13 @@ export class TransactionFormComponent implements OnInit {
     private accountsService: AccountsService
   ) {}
 
+  @Input() hideAccountSelector: string = 'false';
+  @Input() parentValid: boolean = true;
   @Output() save: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   transactionForm = new FormGroup({
     date: new FormControl(null, [Validators.required]),
-    account: new FormControl({ AccountID: null, AccountName: null }, [
-      Validators.required,
-    ]),
+    account: new FormControl(null, [Validators.required]),
     amount: new FormControl(null, [Validators.required]),
     currency: new FormControl('GBP'),
     status: new FormControl('SETTLED', [Validators.required]),
@@ -43,7 +43,11 @@ export class TransactionFormComponent implements OnInit {
     )
   );
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.hideAccountSelector == 'true') {
+      this.transactionForm.controls.account.clearValidators();
+    }
+  }
 
   setFormValues(transaction: any) {
     try {
@@ -89,6 +93,9 @@ export class TransactionFormComponent implements OnInit {
   }
 
   accountComparer(a1, a2) {
+    if (!a1 || !a2) {
+      return false;
+    }
     return a1.AccountName == a2.AccountName && a1.AccountId == a2.AccountId;
   }
 }

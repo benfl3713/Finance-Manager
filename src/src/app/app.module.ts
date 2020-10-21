@@ -35,6 +35,7 @@ import { AccountDetailsExternalAccountsComponent } from './Pages/account-details
 import { GoalsComponent } from './Pages/goals/goals.component';
 import { AddGoalComponent } from './Pages/goals/add-goal/add-goal.component';
 import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
+import { AddSplitTransactionComponent } from './Pages/add/add-split-transaction/add-split-transaction.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
     GoalsComponent,
     AddGoalComponent,
     EditGoalComponent,
+    AddSplitTransactionComponent,
   ],
   imports: [
     BrowserModule,

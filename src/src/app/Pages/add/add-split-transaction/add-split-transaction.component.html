@@ -1,0 +1,46 @@
+<div>
+  <h1>Add Split Transaction:</h1>
+  <app-transaction-form
+    (save)="save($event)"
+    hideAccountSelector="true"
+    [parentValid]="accountTableValid"
+  >
+    <form extrafields>
+      <table
+        mat-table
+        [dataSource]="accounts | async"
+        class="mat-elevation-z0 outline"
+      >
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let account">
+            {{ account.AccountName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let account">
+            <mat-form-field>
+              <mat-label>Amount</mat-label>
+              <input
+                #amountInput
+                type="number"
+                matInput
+                value="0"
+                (keyup)="addAccountSplitBy(account.ID, +amountInput.value)"
+              />
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-error *ngIf="!accountTableValid"
+        >Values should add up to the total amount</mat-error
+      >
+      <br />
+    </form>
+  </app-transaction-form>
+</div>

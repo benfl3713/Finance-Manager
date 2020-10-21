@@ -6,19 +6,21 @@
   </mat-form-field>
   <br />
 
-  <mat-form-field appearance="outline">
-    <mat-label>Account</mat-label>
-    <mat-select
-      formControlName="account"
-      required
-      [compareWith]="accountComparer"
-    >
-      <mat-option *ngFor="let account of accounts$ | async" [value]="account">
-        {{ account.AccountName }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <br />
+  <div *ngIf="hideAccountSelector != 'true'">
+    <mat-form-field appearance="outline">
+      <mat-label>Account</mat-label>
+      <mat-select
+        formControlName="account"
+        required
+        [compareWith]="accountComparer"
+      >
+        <mat-option *ngFor="let account of accounts$ | async" [value]="account">
+          {{ account.AccountName }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+  </div>
 
   <mat-form-field appearance="outline">
     <mat-label>Amount</mat-label>
@@ -73,13 +75,15 @@
   </mat-form-field>
   <br />
 
+  <ng-content select="[extrafields]"></ng-content>
+
   <div class="row">
     <button
       (click)="submit()"
       class="col-md-1 col-sm-12"
       mat-flat-button
       color="primary"
-      [disabled]="!transactionForm.valid"
+      [disabled]="!transactionForm.valid || !parentValid"
     >
       Save
     </button>
