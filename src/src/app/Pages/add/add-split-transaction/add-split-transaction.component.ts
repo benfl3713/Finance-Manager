@@ -28,6 +28,7 @@ export class AddSplitTransactionComponent implements OnInit, AfterViewInit {
 
   accountsToSplitBy = [];
   accountTableValid = false;
+  evenSplitValue;
 
   ngOnInit(): void {}
 
@@ -109,7 +110,7 @@ export class AddSplitTransactionComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    const subAmount =
+    this.evenSplitValue =
       this.transactionForm.transactionForm.controls.amount.value /
       (await this.accounts.toPromise()).length;
 

@@ -6,6 +6,9 @@
     [parentValid]="accountTableValid"
   >
     <form extrafields>
+      <mat-hint
+        >For an even split set each account to: {{ evenSplitValue }}</mat-hint
+      >
       <table
         mat-table
         [dataSource]="accounts | async"
