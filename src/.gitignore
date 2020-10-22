@@ -4,6 +4,9 @@
 /dist
 /tmp
 /out-tsc
+/finance-manager-win32-x64
+/installers
+/windows_installer
 # Only exists if Bazel was run
 /bazel-out
 

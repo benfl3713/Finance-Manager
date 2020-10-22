@@ -1,6 +1,15 @@
 {
   "name": "finance-manager",
-  "version": "0.0.0",
+  "description": "Personal Finance Manager",
+  "author": {
+    "name": "Ben Fletcher",
+    "email": "benfl3713@gmail.com",
+    "url": "https://github.com/benfl3713/Finance-Manager"
+  },
+  "repository": {
+    "url": "https://github.com/benfl3713/Finance-Manager"
+  },
+  "version": "1.0.0",
   "main": "main.electron.js",
   "scripts": {
     "ng": "ng",
@@ -10,7 +19,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:electron": "ng build --base-href ./ && electron ."
+    "start:electron": "ng build --base-href ./ && electron .",
+    "electron:build:win": "ng build --base-href ./ && electron-packager . --platform=win32",
+    "electron:setup:win": "npm run electron:build:win && electron-installer-windows --src finance-manager-win32-x64 --dest installers/  --options.name 'Finance Manager'"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +42,8 @@
     "chart.js": "^2.9.3",
     "chartjs-plugin-colorschemes": "^0.4.0",
     "chartjs-plugin-zoom": "^0.7.7",
+    "electron-prompt": "^1.6.0",
+    "fs": "0.0.1-security",
     "jwt-decode": "^2.2.0",
     "ngx-device-detector": "^2.0.0",
     "rxjs": "~6.5.5",
@@ -47,6 +60,9 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
     "electron": "^10.1.2",
+    "electron-installer-windows": "^3.0.0",
+    "electron-packager": "^15.1.0",
+    "electron-wix-msi": "^3.0.4",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",

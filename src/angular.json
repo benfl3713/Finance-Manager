@@ -45,7 +45,8 @@
             "allowedCommonJsDependencies": [
               "jwt-decode",
               "chartjs-plugin-zoom",
-              "chart.js"
+              "chart.js",
+              "chartjs-plugin-colorschemes"
             ]
           },
           "configurations": {

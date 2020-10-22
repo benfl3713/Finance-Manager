@@ -16,8 +16,6 @@ export class AuthService {
       password,
     };
 
-    console.log(`${FinanceApiRequest.BASE_URL}auth/authenticate`);
-
     return this.http
       .post<string>(`${FinanceApiRequest.BASE_URL}auth/authenticate`, body)
       .pipe(
