@@ -35,13 +35,16 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
     );
   }
 
-  loadData() {
+  loadData(): void {
     this.hasLoaded = false;
     this.chart?.destroy();
-    let dateFrom = new Date();
+    const dateFrom = new Date();
     switch (this.dateRange.value) {
       case 'halfYear':
         dateFrom.setMonth(dateFrom.getMonth() - 6);
+        break;
+      case 'quarter':
+        dateFrom.setMonth(dateFrom.getMonth() - 3);
         break;
       case 'month':
         dateFrom.setMonth(dateFrom.getMonth() - 1);
@@ -61,7 +64,7 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
     });
   }
 
-  buildChart(data: any[]) {
+  buildChart(data: any[]): void {
     const chartConfig = new LineChart();
 
     chartConfig.options.elements = {
