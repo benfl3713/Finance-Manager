@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TitleService {
-  constructor() {}
+  constructor(private configService: ConfigService) {
+    this.configService.getValue('SiteName').then((name) => {
+      this.baseSiteName = name || 'Finance Manager';
+      this.setDocumentTitle();
+    });
+  }
 
+  baseSiteName = '';
   public title: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public showBackButton: BehaviorSubject<boolean> = new BehaviorSubject<
     boolean
@@ -27,9 +34,9 @@ export class TitleService {
 
   private setDocumentTitle() {
     if (this.getTitle() && this.getTitle().length > 0) {
-      document.title = `${this.getTitle()} - Finance Manager`;
+      document.title = `${this.getTitle()} - ${this.baseSiteName}`;
     } else {
-      document.title = 'Finance Manager';
+      document.title = this.baseSiteName;
     }
   }
 }

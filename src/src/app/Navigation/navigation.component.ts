@@ -7,6 +7,7 @@ import { FinanceApiRequest } from '../Services/finance-api.request.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TitleService } from '../Services/title.service';
 import { MenuItems } from './MenuItems';
+import { ConfigService } from '../Services/config.service';
 
 @Component({
   selector: 'app-navigation',
@@ -21,7 +22,8 @@ export class NavigationComponent {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private titleService: TitleService
+    private titleService: TitleService,
+    private configService: ConfigService
   ) {}
   @ViewChild(MatSidenav, { static: false }) public sidenav: MatSidenav;
 
@@ -36,8 +38,13 @@ export class NavigationComponent {
   page_title$ = this.titleService.title;
   showBackButton$ = this.titleService.showBackButton;
   menuItems = MenuItems;
+  siteName = '';
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.configService
+      .getValue('SiteName')
+      .then((name) => (this.siteName = name || 'Finance Manager'));
+  }
 
   PageChanged(): void {
     if (this.IsMobile === true) {

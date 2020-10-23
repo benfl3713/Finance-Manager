@@ -8,6 +8,10 @@
     "IsDemo": {
       "type": "boolean",
       "default": false
+    },
+    "SiteName": {
+      "type": "string",
+      "default": "Finance Manager"
     }
   },
   "required": ["FinanceApiUrl"]
