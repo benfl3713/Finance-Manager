@@ -74,8 +74,14 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
     };
 
     const dateFrom = this.dateRange.value;
-    chartConfig.options.scales.xAxes[0].time.unit =
-      dateFrom == 'week' || dateFrom == 'month' ? 'day' : 'month';
+
+    if (dateFrom == 'week' || dateFrom == 'month') {
+      chartConfig.options.scales.xAxes[0].time.unit = 'day';
+    } else if (dateFrom == 'quarter') {
+      chartConfig.options.scales.xAxes[0].time.unit = 'week';
+    } else {
+      chartConfig.options.scales.xAxes[0].time.unit = 'month';
+    }
 
     chartConfig.options.scales.yAxes = [
       {
@@ -114,7 +120,7 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
       ).map((d) => this.datePipe.transform(d, 'yyyy-MM-dd'));
     }
 
-    this.chart.options.responsive = this.chart.options.legend.display = this.chart.options.maintainAspectRatio = !this
+    this.chart.options.responsive = this.chart.options.maintainAspectRatio = !this
       .isMobile;
 
     this.chart.options.responsive = true;
