@@ -18,13 +18,14 @@ This is a webapp that allows multiple users to add accounts and transactions etc
 - You can easily run this in docker using the image: benfl3713/finance-manager and also run the api image which is detailed in the api repo
 
 # Documentation
+
 https://finance-docs-benfl3713.netlify.app/
 
 # Technology
 
 - angular front end with a angular material theme
 
-# Demo  
+# Demo
 
 To view the demo site just visit https://demo-finance-manager-benfl3713.netlify.app
 
@@ -33,11 +34,12 @@ To view the demo site just visit https://demo-finance-manager-benfl3713.netlify.
 - If you have any questions feel free to raise an issue or email me at **benfl3713@gmail.com**
 - I can also give you a demo of a demo site I have running if you're intrested
 
-# Docker  
+# Docker
+
 If you want to run the finance manager and finance api and database all together then you can use the following docker-compose configuration.
 (This assumes you are running on windows. Just modify the volume mappings if you're using linux or mac os to a different host directory)
 
-```
+```yaml
 version: "3"
 
 services:

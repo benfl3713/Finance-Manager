@@ -25,7 +25,7 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
   chart;
   hasLoaded: boolean = false;
   isMobile: boolean = this.deviceService.isMobile();
-  dateRange = new FormControl('year');
+  dateRange = new FormControl('quarter');
   dateRangeSub: Subscription;
 
   ngOnInit(): void {
