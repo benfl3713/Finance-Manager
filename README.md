@@ -9,7 +9,7 @@ Personal Finance Manager Web App
 
 # Purpose
 
-This is a webapp that allows multiple users to add accounts and transactions etc and manage there finances.
+This is a webapp that allows multiple users to add accounts and transactions etc and manage your finances.
 
 # Use
 
@@ -24,6 +24,13 @@ This is a webapp that allows multiple users to add accounts and transactions etc
 # Demo
 
 To view the demo site just visit https://demo-finance-manager-benfl3713.netlify.app
+
+# Development
+
+1. Clone repository
+2. Open a terminal in the `src` folder
+3. Run `npm install` to install all dependencies
+4. Run `npm start` to start the site up
 
 # Need Help?
 

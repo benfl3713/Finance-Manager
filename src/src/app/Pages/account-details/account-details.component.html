@@ -33,19 +33,19 @@
     fxLayoutGap="10px"
     fxLayoutAlign="center"
   >
-    <mat-card class="current-balance mat-elevation-z3" fxFlex="25%">
+    <mat-card class="current-balance mat-elevation-z3" fxFlex="33%">
       <mat-card-content>Current Balance</mat-card-content>
       <mat-card-title>{{
         account.CurrentBalance | currency: account.BaseCurrency
       }}</mat-card-title>
     </mat-card>
-    <mat-card class="available-balance mat-elevation-z3" fxFlex="25%">
+    <mat-card class="available-balance mat-elevation-z3" fxFlex="33%">
       <mat-card-content>Available Balance</mat-card-content>
       <mat-card-title>{{
         account.AvailableBalance | currency: account.BaseCurrency
       }}</mat-card-title>
     </mat-card>
-    <mat-card class="spent-this-week mat-elevation-z3" fxFlex="25%">
+    <mat-card class="spent-this-week mat-elevation-z3" fxFlex="33%">
       <mat-card-content>Spent This Week</mat-card-content>
       <mat-card-title *ngIf="spentThisWeek != null; else spentThisWeekLoader">{{
         spentThisWeek | currency: account.BaseCurrency
@@ -53,10 +53,6 @@
       <ng-template #spentThisWeekLoader
         ><mat-spinner style="margin: auto" diameter="40"></mat-spinner
       ></ng-template>
-    </mat-card>
-    <mat-card class="top-categories mat-elevation-z3" fxFlex="25%">
-      <mat-card-content>Top Categories</mat-card-content>
-      <mat-card-title>Coming Soon</mat-card-title>
     </mat-card>
   </div>
 

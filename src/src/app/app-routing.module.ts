@@ -19,6 +19,7 @@ import { AddGoalComponent } from './Pages/goals/add-goal/add-goal.component';
 import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
 import { AddSplitTransactionComponent } from './Pages/add/add-split-transaction/add-split-transaction.component';
 import { AddTransferTransactionComponent } from './Pages/add/add-transfer-transaction/add-transfer-transaction.component';
+import { SettingsComponent } from './Pages/settings/settings.component';
 
 const authorisedRoutes: Routes = [
   {
@@ -64,6 +65,11 @@ const authorisedRoutes: Routes = [
         data: { title: 'Add Goal' },
       },
     ],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    data: { title: 'Settings' },
   },
   {
     path: 'datafeeds',

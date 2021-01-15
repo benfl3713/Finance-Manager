@@ -4,12 +4,18 @@ import {
   ViewChild,
   AfterViewInit,
   HostListener,
+  Inject,
 } from '@angular/core';
 import { TransactionsService } from 'src/app/Services/transactions.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionFormComponent } from 'src/app/Components/transaction-form/transaction-form.component';
 import { ConfigService } from 'src/app/Services/config.service';
 import { NotifierService } from 'angular-notifier';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 
 @Component({
   templateUrl: './transaction-details.component.html',
@@ -21,7 +27,8 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private notifier: NotifierService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    public dialog: MatDialog
   ) {}
 
   @ViewChild(TransactionFormComponent, { static: false })
@@ -102,5 +109,48 @@ export class TransactionDetailsComponent implements AfterViewInit, OnInit {
         .deleteTransaction(this.id)
         .subscribe(() => this.router.navigate(['/transactions']));
     }
+  }
+
+  setCustomIcon() {
+    const dialogRef = this.dialog.open(TransactionSetCustomIcon, {
+      width: '400px',
+      data: this.icon,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.icon = result;
+      }
+    });
+  }
+}
+
+@Component({
+  template: `
+    <h1 mat-dialog-title>Set Transaction Icon</h1>
+    <div mat-dialog-content>
+      <p>Icon Url</p>
+      <mat-form-field style="width: 100%">
+        <mat-label>Icon Url</mat-label>
+        <input matInput [(ngModel)]="iconUrl" />
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button [mat-dialog-close]="iconUrl" cdkFocusInitial>
+        Ok
+      </button>
+    </div>
+  `,
+})
+export class TransactionSetCustomIcon {
+  constructor(
+    public dialogRef: MatDialogRef<TransactionSetCustomIcon>,
+    @Inject(MAT_DIALOG_DATA) public iconUrl: string
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

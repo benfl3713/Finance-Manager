@@ -1,5 +1,5 @@
 <loading-spinner [isLoading]="!hasLoaded"></loading-spinner>
-<div class="centre-text">Spent per Category this Month</div>
+<div class="centre-text" *ngIf="hasLoaded">Spent per Category this Month</div>
 <div [ngClass]="{ mobileChart: isMobile }">
   <canvas id="spentPerCategoryChart"></canvas>
 </div>

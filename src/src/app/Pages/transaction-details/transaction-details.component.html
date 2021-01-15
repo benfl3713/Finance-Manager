@@ -2,7 +2,8 @@
   <div style="margin-bottom: 20px" *ngIf="!transactionNotFound">
     <img
       [src]="icon || 'assets/defaultTransaction.png'"
-      class="transaction-logo"
+      class="transaction-logo clickable"
+      (click)="setCustomIcon()"
     />
     <button
       mat-stroked-button

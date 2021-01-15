@@ -37,7 +37,7 @@ export class SpentPerCategoryChartComponent implements OnInit, OnDestroy {
 
     const dataset = {
       fill: false,
-      borderWidth: 4,
+      borderWidth: 2,
       data: Object.values(data),
     };
     chartConfig.data.datasets.push(dataset);

@@ -16,6 +16,9 @@ $finance-theme: mat-light-theme(
   $finance-warn
 );
 
+table a {
+  color: black;
+}
 // Include the default theme styles.
 @include angular-material-theme($finance-theme);
 
@@ -30,6 +33,10 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .finance-dark-theme {
   @include angular-material-theme($dark-theme);
+
+  table a {
+    color: white;
+  }
 }
 
 .mat-primary-background {

@@ -23,7 +23,10 @@ import { AccountsComponent } from './Pages/accounts/accounts.component';
 import { TransactionsComponent } from './Pages/transactions/transactions.component';
 import { AccountDetailsComponent } from './Pages/account-details/account-details.component';
 import { FinanceApiRequest } from './Services/finance-api.request.service';
-import { TransactionDetailsComponent } from './Pages/transaction-details/transaction-details.component';
+import {
+  TransactionDetailsComponent,
+  TransactionSetCustomIcon,
+} from './Pages/transaction-details/transaction-details.component';
 import { DatePipe } from '@angular/common';
 import { ComponentModule } from './Components/component.module';
 import { AddAccountComponent } from './Pages/add/add-account/add-account.component';
@@ -37,6 +40,7 @@ import { AddGoalComponent } from './Pages/goals/add-goal/add-goal.component';
 import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
 import { AddSplitTransactionComponent } from './Pages/add/add-split-transaction/add-split-transaction.component';
 import { AddTransferTransactionComponent } from './Pages/add/add-transfer-transaction/add-transfer-transaction.component';
+import { SettingsComponent } from './Pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,8 @@ import { AddTransferTransactionComponent } from './Pages/add/add-transfer-transa
     EditGoalComponent,
     AddSplitTransactionComponent,
     AddTransferTransactionComponent,
+    TransactionSetCustomIcon,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

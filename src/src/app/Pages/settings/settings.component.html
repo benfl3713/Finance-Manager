@@ -1,0 +1,12 @@
+<h3>Interface:</h3>
+
+<mat-form-field>
+  <mat-label>Theme</mat-label>
+  <mat-select [(ngModel)]="theme">
+    <mat-option value="light">Light</mat-option>
+    <mat-option value="dark">Dark</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br />
+<button mat-raised-button color="primary" (click)="save()">Save</button>

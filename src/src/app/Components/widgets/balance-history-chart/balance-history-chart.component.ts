@@ -124,7 +124,6 @@ export class BalanceHistoryChartComponent implements OnInit, OnDestroy {
       .isMobile;
 
     this.chart.options.responsive = true;
-    this.chart.options.maintainAspectRatio = false;
 
     this.chart.update();
 
