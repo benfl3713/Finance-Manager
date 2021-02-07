@@ -9,6 +9,7 @@
   "repository": {
     "url": "https://github.com/benfl3713/Finance-Manager"
   },
+  "homepage": "https://github.com/benfl3713/Finance-Manager#readme",
   "version": "1.0.0",
   "main": "main.electron.js",
   "scripts": {

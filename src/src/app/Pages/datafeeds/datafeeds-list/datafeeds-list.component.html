@@ -24,6 +24,14 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let datafeed">
       <button
+        *ngIf="datafeed.NeedsReconnecting === true"
+        mat-raised-button
+        color="warn"
+        (click)="reconnectDatafeed(datafeed)"
+      >
+        Re-Connect
+      </button>
+      <button
         mat-stroked-button
         color="warn"
         (click)="deleteDatafeed(datafeed)"
