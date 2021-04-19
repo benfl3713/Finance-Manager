@@ -54,7 +54,7 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.loadingService.add({ key: ['default', 'transactions-table'] });
     this.transactions = this.account
-      ? this.transactionsService.getTransactionsByAccountId(this.account)
+      ? this.transactionsService.getTransactions({ accountId: this.account })
       : this.transactionsService.getTransactions();
 
     this.transactions = this.transactions

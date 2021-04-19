@@ -13,7 +13,7 @@ export class GoalsService {
   }
 
   getGoals(): Observable<any> {
-    return this.financeApi.get<any[]>('goals');
+    return this.financeApi.get<any[]>('goal');
   }
 
   getGoalById(goalId: string) {

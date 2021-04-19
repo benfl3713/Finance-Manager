@@ -16,7 +16,7 @@ export class DatafeedsService {
       query.datafeedType = datafeedType.toUpperCase();
     }
 
-    return this.financeApi.get<any>('datafeeds', query);
+    return this.financeApi.get<any>('datafeed', query);
   }
 
   deleteDatafeed(provider: string, vendorId: string): Observable<void> {

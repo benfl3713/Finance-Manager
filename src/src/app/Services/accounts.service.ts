@@ -9,7 +9,7 @@ export class AccountsService {
   constructor(private financeApi: FinanceApiRequest) {}
 
   getAccounts(): Observable<any[]> {
-    return this.financeApi.get<any[]>('accounts');
+    return this.financeApi.get<any[]>('account');
   }
 
   getAccountById(id: string): Observable<any> {

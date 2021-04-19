@@ -9,15 +9,8 @@ import { Params } from '@angular/router';
 export class TransactionsService {
   constructor(private financeApi: FinanceApiRequest) {}
 
-  getTransactions(): Observable<any[]> {
-    return this.financeApi.get<any[]>('transactions');
-  }
-
-  getTransactionsByAccountId(accountId: string): Observable<any[]> {
-    var queryParams: Params = {
-      accountId: accountId,
-    };
-    return this.financeApi.get<any[]>('transactions', queryParams);
+  getTransactions(filters?: { accountId?: string }): Observable<any[]> {
+    return this.financeApi.get<any[]>('transaction', filters);
   }
 
   getTransactionById(transactionId: string): Observable<any> {
