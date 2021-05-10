@@ -1,0 +1,45 @@
+
+
+<div *ngIf="(notifications$ | async) as notifications; else loading">
+  <mat-list (click)="$event.stopPropagation()">
+    <mat-list-item
+      *ngFor="let notification of notifications; let isLast = last;"
+      class="notification-item-error"
+    >
+      <div *ngIf="notification.MarkedAsRead === false || (notification.MarkedAsRead === true && showRead.checked === true)">
+        <div class="notification-item-main">
+          <span matLine>{{ notification.Message }}</span>
+          <button
+            mat-icon-button
+            aria-label="mark as unread"
+            (click)="updateNotificationReadStatus(notification.ID, false)"
+            *ngIf="notification.MarkedAsRead; else markasread"
+          >
+            <mat-icon>markunread</mat-icon>
+          </button>
+          <ng-template #markasread>
+            <button mat-icon-button aria-label="mark as read" (click)="updateNotificationReadStatus(notification.ID, true)">
+              <mat-icon>drafts</mat-icon>
+            </button>
+          </ng-template>
+
+          <button mat-icon-button aria-label="delete" (click)="deleteNotification(notification.ID)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <mat-divider *ngIf="!isLast"></mat-divider>
+      </div>
+    </mat-list-item>
+  </mat-list>
+
+  <mat-action-row (click)="$event.stopPropagation()">
+    <button mat-button (click)="markMultipleAsRead(notifications)">Mark All as Read</button>
+    <button mat-button color="warn" (click)="deleteMultipleNotifications(notifications)">Delete All</button>
+    <mat-slide-toggle #showRead>Show Read</mat-slide-toggle>
+  </mat-action-row>
+</div>
+
+<ng-template #loading>
+  <loading-spinner class="loading" diameter="60"></loading-spinner>
+</ng-template>

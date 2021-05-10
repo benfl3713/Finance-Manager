@@ -62,7 +62,7 @@ import { SettingsComponent } from './Pages/settings/settings.component';
     AddSplitTransactionComponent,
     AddTransferTransactionComponent,
     TransactionSetCustomIcon,
-    SettingsComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +106,6 @@ import { SettingsComponent } from './Pages/settings/settings.component';
     },
     DatePipe,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

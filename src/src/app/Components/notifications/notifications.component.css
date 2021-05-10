@@ -1,0 +1,27 @@
+
+::ng-deep .mat-line{
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+}
+
+::ng-deep  .mat-list .mat-list-item{
+  height:initial!important;
+}
+
+.notification-item-main {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.notification-item-error {
+  border-left: 4px solid lightskyblue;
+}
+
+mat-list {
+  max-height: 450px !important;
+  overflow-y: auto;
+}
+
+.loading {
+  margin: 50px;
+}

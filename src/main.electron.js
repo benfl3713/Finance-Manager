@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu, protocol } = require("electron");
 const prompt = require("electron-prompt");
 const path = require("path");
 const fs = require("fs");
@@ -18,6 +18,11 @@ function createWindow() {
   });
 
   mainWindow.setMenu(Menu.buildFromTemplate(menuTemplate));
+
+  protocol.interceptBufferProtocol("file", (request, result) => {
+    if (request.url === configPath)
+      return result(new Buffer.from(["hello world", "utf-8"]));
+  });
 
   // For some reason we have to double load for it to work
   loadContent();
@@ -154,6 +159,10 @@ const menuTemplate = [
 
 async function editFinanceApiValue() {
   let config = getConfig();
+
+  if (config.FinanceApiUrl === "${FinanceApiUrl}") {
+    config.FinanceApiUrl = "http://localhost:5001/api";
+  }
 
   prompt({
     title: "Finance API Url",

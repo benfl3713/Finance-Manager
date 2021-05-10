@@ -1,10 +1,11 @@
+import { NotificationService } from './../Services/notification.service';
 import { Component, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
 import { FinanceApiRequest } from '../Services/finance-api.request.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { TitleService } from '../Services/title.service';
 import { MenuItems } from './MenuItems';
 import { ConfigService } from '../Services/config.service';
@@ -16,14 +17,15 @@ import { ConfigService } from '../Services/config.service';
 })
 export class NavigationComponent {
   isExpanded = false;
-  IsMobile: boolean = false;
+  IsMobile = false;
   LoadingBar = false;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private titleService: TitleService,
-    private configService: ConfigService
+    private configService: ConfigService,
+    private notificationService: NotificationService
   ) {}
   @ViewChild(MatSidenav, { static: false }) public sidenav: MatSidenav;
 
@@ -39,11 +41,12 @@ export class NavigationComponent {
   showBackButton$ = this.titleService.showBackButton;
   menuItems = MenuItems;
   siteName = '';
+  notificationCount = this.notificationService.getUnreadPoll();
 
   ngOnInit(): void {
     this.configService
       .getValue('SiteName')
-      .then((name) => (this.siteName = name || 'Finance Manager'));
+      .then((name) => (this.siteName = name ?? 'Finance Manager'));
   }
 
   PageChanged(): void {

@@ -1,3 +1,4 @@
+import { Account } from './../Models/account.model';
 import { Injectable } from '@angular/core';
 import { FinanceApiRequest } from './finance-api.request.service';
 import { Observable } from 'rxjs';
@@ -8,11 +9,11 @@ import { Observable } from 'rxjs';
 export class AccountsService {
   constructor(private financeApi: FinanceApiRequest) {}
 
-  getAccounts(): Observable<any[]> {
+  getAccounts(): Observable<Account[]> {
     return this.financeApi.get<any[]>('account');
   }
 
-  getAccountById(id: string): Observable<any> {
+  getAccountById(id: string): Observable<Account> {
     return this.financeApi.get<any>(`account/${id}`);
   }
 

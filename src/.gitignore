@@ -9,6 +9,7 @@
 /windows_installer
 # Only exists if Bazel was run
 /bazel-out
+/electron
 
 # dependencies
 /node_modules

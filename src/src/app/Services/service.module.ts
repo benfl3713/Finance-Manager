@@ -7,6 +7,7 @@ import { ConfigService } from './config.service';
 import { StatisticsService } from './statistics.service';
 import { GoalsService } from './goals.service';
 import { ThemeService } from './theme.service';
+import { NotificationService } from './notification.service';
 
 @NgModule({
   declarations: [],
@@ -18,6 +19,7 @@ import { ThemeService } from './theme.service';
     ConfigService,
     StatisticsService,
     GoalsService,
+    NotificationService,
     ThemeService,
     {
       provide: APP_INITIALIZER,

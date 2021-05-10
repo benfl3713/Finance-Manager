@@ -75,3 +75,8 @@ mat-toolbar {
   border-top-right-radius: 24px;
   border-bottom-right-radius: 24px;
 }
+
+::ng-deep.notification-menu {
+  max-width: 100vw !important;
+  width: 450px;
+}

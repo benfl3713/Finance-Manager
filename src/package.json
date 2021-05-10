@@ -21,8 +21,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:electron": "ng build --base-href ./ && electron .",
-    "electron:build:win": "ng build --base-href ./ && electron-packager . --platform=win32",
-    "electron:setup:win": "npm run electron:build:win && electron-installer-windows --src finance-manager-win32-x64 --dest installers/  --options.name 'Finance Manager'"
+    "electron:build": "ng build --base-href ./ && electron-builder build",
+    "electron:installer": "node setup-electron.js && electron-builder"
   },
   "private": true,
   "dependencies": {
@@ -53,17 +53,29 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.8",
+    "@angular-eslint/builder": "1.2.0",
+    "@angular-eslint/eslint-plugin": "1.2.0",
+    "@angular-eslint/eslint-plugin-template": "1.2.0",
+    "@angular-eslint/schematics": "1.2.0",
+    "@angular-eslint/template-parser": "1.2.0",
     "@angular/cli": "~10.0.8",
     "@angular/compiler-cli": "~10.0.14",
     "@schematics/angular": "^10.0.8",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
     "codelyzer": "^6.0.0",
     "electron": "^10.1.2",
+    "electron-builder": "^22.9.1",
     "electron-installer-windows": "^3.0.0",
     "electron-packager": "^15.1.0",
     "electron-wix-msi": "^3.0.4",
+    "eslint": "^7.6.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-prefer-arrow": "1.2.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.0.0",
@@ -75,5 +87,33 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"
+  },
+  "build": {
+    "appId": "benfl3713-finance-manager",
+    "productName": "Finance Manager",
+    "asarUnpack": [
+      "dist/assets/template.config.json",
+      "dist/assets/config.schema.json",
+      "dist/assets/config.json"
+    ],
+    "directories": {
+      "output": "electron"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "src/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "src/favicon.ico",
+      "uninstallerIcon": "src/favicon.ico"
+    },
+    "files": [
+      "dist",
+      "main.electron.js"
+    ]
   }
 }

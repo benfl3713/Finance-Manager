@@ -1,8 +1,10 @@
+import { TitleService } from 'src/app/Services/title.service';
+import { Account } from './../../Models/account.model';
 import { Component, OnInit } from '@angular/core';
 import { AccountsService } from '../../Services/accounts.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { tap } from 'rxjs/operators';
-import { TitleService } from 'src/app/Services/title.service';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './accounts.component.html',
@@ -17,7 +19,7 @@ export class AccountsComponent implements OnInit {
     this.titleService.showBackButton.next(false);
   }
 
-  accounts = this.accountsService
+  accounts: Observable<Account[]> = this.accountsService
     .getAccounts()
     .pipe(
       tap(() =>

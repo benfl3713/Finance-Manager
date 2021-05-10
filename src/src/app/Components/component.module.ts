@@ -10,6 +10,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { SpentPerCategoryChartComponent } from './widgets/spent-per-category-chart/spent-per-category-chart.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { GoalFormComponent } from './goal-form/goal-form.component';
+import { NotificationsComponent } from "./notifications/notifications.component";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { GoalFormComponent } from './goal-form/goal-form.component';
     SpentPerCategoryChartComponent,
     ErrorPageComponent,
     GoalFormComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +38,7 @@ import { GoalFormComponent } from './goal-form/goal-form.component';
     SpentPerCategoryChartComponent,
     ErrorPageComponent,
     GoalFormComponent,
+    NotificationsComponent
   ],
 })
 export class ComponentModule {}

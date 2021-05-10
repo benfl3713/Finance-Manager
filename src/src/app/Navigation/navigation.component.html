@@ -1,22 +1,8 @@
-<mat-progress-bar
-  id="loading-bar"
-  mode="indeterminate"
-  color="accent"
-  *ngIf="'default' | swIsLoading | async"
-></mat-progress-bar>
-<mat-toolbar
-  id="top-bar"
-  color="primary"
-  class="mat-elevation-z4"
-  fixedInViewport
->
-  <button
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    class="hide-button-outline"
-    (click)="sidenav.toggle()"
-  >
+<mat-progress-bar id="loading-bar" mode="indeterminate" color="accent" *ngIf="'default' | swIsLoading | async">
+</mat-progress-bar>
+<mat-toolbar id="top-bar" color="primary" class="mat-elevation-z4" fixedInViewport>
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button class="hide-button-outline"
+    (click)="sidenav.toggle()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <span class="full-text">{{ siteName }}</span>
@@ -49,6 +35,16 @@
     </button>
   </mat-menu>
 
+  <button mat-icon-button [matMenuTriggerFor]="notificationMenu">
+    <mat-icon [matBadge]="notificationCount | async" [matBadgeHidden]="(notificationCount | async) < 1"
+      matBadgeColor="accent">notifications</mat-icon>
+  </button>
+  <mat-menu #notificationMenu="matMenu" class="notification-menu">
+    <ng-template matMenuContent>
+      <app-notification-panel></app-notification-panel>
+    </ng-template>
+  </mat-menu>
+
   <button mat-icon-button [matMenuTriggerFor]="toolMenu" aria-label="tool-menu">
     <mat-icon>more_vert</mat-icon>
   </button>
@@ -65,45 +61,24 @@
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container" fullScreen>
-  <mat-sidenav
-    #drawer
-    id="sidenav"
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'push' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
+  <mat-sidenav #drawer id="sidenav" class="sidenav" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'push' : 'side'"
+    [opened]="(isHandset$ | async) === false">
     <mat-toolbar color="primary"> </mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let item of menuItems">
-        <a
-          mat-list-item
-          class="menu-item"
-          [routerLink]="item.route"
-          [routerLinkActive]="['mat-primary-background']"
-          [routerLinkActiveOptions]="item.routerLinkActiveOptions || {}"
-          (click)="PageChanged()"
-          [matTooltip]="item.matTooltip"
-          ><span [class]="item.icon"></span> {{ item.name }}</a
-        >
+        <a mat-list-item class="menu-item" [routerLink]="item.route" [routerLinkActive]="['mat-primary-background']"
+          [routerLinkActiveOptions]="item.routerLinkActiveOptions || {}" (click)="PageChanged()"
+          [matTooltip]="item.matTooltip"><span [class]="item.icon"></span> {{ item.name }}</a>
       </div>
     </mat-nav-list>
   </mat-sidenav>
 
   <div class="container-fluid">
     <div *ngIf="showBackButton$ | async">
-      <button
-        type="button"
-        aria-label="Go back"
-        mat-icon-button
-        style="float: left"
-        class="hide-button-outline"
-        (click)="goBack()"
-      >
-        <mat-icon aria-label="Side nav toggle icon"
-          >keyboard_backspace</mat-icon
-        >
+      <button type="button" aria-label="Go back" mat-icon-button style="float: left" class="hide-button-outline"
+        (click)="goBack()">
+        <mat-icon aria-label="Side nav toggle icon">keyboard_backspace</mat-icon>
       </button>
       <h1 style="font-size: 28px; float: left; margin-top: 5px">
         {{ page_title$ | async }}

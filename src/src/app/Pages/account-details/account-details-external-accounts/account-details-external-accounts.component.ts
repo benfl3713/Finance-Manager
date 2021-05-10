@@ -7,7 +7,8 @@ import {
   RefreshIntervals,
 } from 'src/app/Services/accounts.service';
 import { IsLoadingService } from '@service-work/is-loading';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import { Account } from 'src/app/Models/account.model';
 
 @Component({
   templateUrl: './account-details-external-accounts.component.html',
@@ -21,10 +22,10 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
     private loadingSerivce: IsLoadingService
   ) {}
 
-  account: any = {};
-  externalAccounts: any[] = [];
+  account: Account;
+  externalAccounts = [];
   displayedColumns: string[] = ['provider', 'vendor', 'accountName', 'actions'];
-  disableActions: boolean = false;
+  disableActions = false;
   accountId: string;
 
   settingsForm: FormGroup = new FormGroup({
@@ -72,7 +73,7 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
     });
   }
 
-  mapAccount(externalAccount): void {
+  mapAccount(externalAccount: any): void {
     this.disableActions = true;
     this.loadingSerivce.add({ key: ['default', 'map-account'] });
     this.datafeedsService

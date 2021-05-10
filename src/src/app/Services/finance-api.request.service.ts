@@ -11,7 +11,7 @@ import { NotifierService } from 'angular-notifier';
 export class FinanceApiRequest {
   constructor(private http: HttpClient) {}
   public static BASE_URL = 'http://localhost:5001/api/';
-  public static get Token(): string {
+  public static get Token(): string | null {
     return localStorage.getItem('id_token');
   }
 
