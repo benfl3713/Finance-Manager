@@ -2,6 +2,7 @@ import { Account } from './../Models/account.model';
 import { Injectable } from '@angular/core';
 import { FinanceApiRequest } from './finance-api.request.service';
 import { Observable } from 'rxjs';
+import { AccountSettings } from '../Models/account-settings';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +30,8 @@ export class AccountsService {
     return this.financeApi.get<number>(`account/${accountId}/GetSpentThisWeek`);
   }
 
-  getAccountSettings(accountId: string) {
-    return this.financeApi.get<any>(`account/${accountId}/GetAccountSettings`);
+  getAccountSettings(accountId: string): Observable<AccountSettings> {
+    return this.financeApi.get<AccountSettings>(`account/${accountId}/GetAccountSettings`);
   }
 
   setAccountSettings(accountSettings: AccountSettings) {
@@ -41,16 +42,3 @@ export class AccountsService {
   }
 }
 
-export interface AccountSettings {
-  AccountID: string;
-  RefreshInterval: RefreshIntervals;
-  GenerateAdjustments: string;
-}
-
-export enum RefreshIntervals {
-  Never,
-  hourly,
-  sixHours,
-  biDaily,
-  Daily,
-}

@@ -14,6 +14,10 @@
 
   <mat-checkbox formControlName="generateAdjustments" color="primary"
     >Generate Adjustment Transactions</mat-checkbox
+  ><br>
+
+  <mat-checkbox formControlName="notifyAccountRefreshes" color="primary"
+    >Notify on Account Refresh</mat-checkbox
   >
 </form>
 
@@ -25,7 +29,7 @@
 
 <br />
 <br />
-<h3>{{ account.AccountName }}</h3>
+<h3>{{ account?.AccountName }}</h3>
 
 <table mat-table [dataSource]="externalAccounts" class="mat-elevation-z4">
   <ng-container matColumnDef="provider">

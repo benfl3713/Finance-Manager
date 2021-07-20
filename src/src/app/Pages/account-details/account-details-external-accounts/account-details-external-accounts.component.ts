@@ -2,13 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { DatafeedsService } from 'src/app/Services/datafeeds.service';
 import { ActivatedRoute } from '@angular/router';
 import {
-  AccountSettings,
   AccountsService,
-  RefreshIntervals,
 } from 'src/app/Services/accounts.service';
 import { IsLoadingService } from '@service-work/is-loading';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Account } from 'src/app/Models/account.model';
+import { AccountSettings, RefreshIntervals } from 'src/app/Models/account-settings';
 
 @Component({
   templateUrl: './account-details-external-accounts.component.html',
@@ -31,6 +30,7 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
   settingsForm: FormGroup = new FormGroup({
     refreshInterval: new FormControl('never'),
     generateAdjustments: new FormControl(true),
+    notifyAccountRefreshes: new FormControl(false)
   });
 
   ngOnInit(): void {
@@ -63,6 +63,9 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
           );
           this.settingsForm.controls.refreshInterval.setValue(
             (settings.RefreshInterval as string).toLowerCase()
+          );
+          this.settingsForm.controls.notifyAccountRefreshes.setValue(
+            settings.NotifyAccountRefreshes
           );
         }
         this.settingsForm.enable();
@@ -124,6 +127,8 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
       GenerateAdjustments: this.settingsForm.controls['generateAdjustments']
         .value,
       RefreshInterval: this.parseRefreshInterval(),
+      NotifyAccountRefreshes: this.settingsForm.controls['notifyAccountRefreshes'].value
+
     };
 
     this.accountsService.setAccountSettings(settings).subscribe({
