@@ -67,9 +67,13 @@
     <mat-toolbar color="primary"> </mat-toolbar>
     <mat-nav-list>
       <div *ngFor="let item of menuItems">
-        <a mat-list-item class="menu-item" [routerLink]="item.route" [routerLinkActive]="['mat-primary-background']"
+        <a *ngIf="item.type === 'page'" mat-list-item class="menu-item" [routerLink]="item.route" [routerLinkActive]="['mat-primary-background']"
           [routerLinkActiveOptions]="item.routerLinkActiveOptions || {}" (click)="PageChanged()"
           [matTooltip]="item.matTooltip"><span [class]="item.icon"></span> {{ item.name }}</a>
+
+          <div *ngIf="item.type === 'divider'">
+            <mat-divider></mat-divider>
+          </div>
       </div>
     </mat-nav-list>
   </mat-sidenav>

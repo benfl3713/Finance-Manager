@@ -11,11 +11,11 @@ export class AccountsService {
   constructor(private financeApi: FinanceApiRequest) {}
 
   getAccounts(): Observable<Account[]> {
-    return this.financeApi.get<any[]>('account');
+    return this.financeApi.get<Account[]>('account');
   }
 
   getAccountById(id: string): Observable<Account> {
-    return this.financeApi.get<any>(`account/${id}`);
+    return this.financeApi.get<Account>(`account/${id}`);
   }
 
   addNewAccount(account: any) {

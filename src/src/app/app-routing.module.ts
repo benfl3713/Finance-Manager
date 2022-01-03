@@ -89,6 +89,11 @@ const authorisedRoutes: Routes = [
     component: EditGoalComponent,
     data: { title: 'Edit Goal' },
   },
+  {
+    path: 'wealth',
+    loadChildren: () =>
+      import('./Modules/wealth/wealth.module').then((m) => m.WealthModule),
+  },
 ];
 
 const routes: Routes = [
