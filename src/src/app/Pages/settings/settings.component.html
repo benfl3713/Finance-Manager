@@ -8,5 +8,11 @@
   </mat-select>
 </mat-form-field>
 
+<br/>
+
+<mat-checkbox [checked]="enable_wealth == 'true'" (change)="enable_wealth = $event.checked">
+  Show Wealth Pages
+</mat-checkbox>
+
 <br />
 <button mat-raised-button color="primary" (click)="save()">Save</button>

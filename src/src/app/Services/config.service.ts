@@ -1,11 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
   constructor(private http: HttpClient) {}
+
+  observers: any = {};
 
   private config;
 
@@ -18,5 +21,24 @@ export class ConfigService {
     }
 
     return this.config[key];
+  }
+
+  getClientValue(key: string): BehaviorSubject<string> {
+    const obs = new BehaviorSubject<string>(localStorage.getItem(key))
+
+    if(!this.observers[key]){
+      this.observers[key] = [];
+    }
+
+    this.observers[key].push(obs);
+    return obs;
+  }
+
+  setClientValue(key: string, value: string) {
+    localStorage.setItem(key, value);
+
+    if(this.observers[key] && this.observers[key].length > 0){
+      this.observers[key].forEach(o => o.next(value));
+    }
   }
 }

@@ -1,3 +1,7 @@
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { ConfigService } from "../Services/config.service";
+
 export const MenuItems: (MenuItem | MenuItemDivider)[] = [
   {
     type: 'page',
@@ -38,18 +42,21 @@ export const MenuItems: (MenuItem | MenuItemDivider)[] = [
     name: 'Portfolio',
     icon : 'fas fa-chart-pie',
     route: '/wealth/portfolio',
+    show: (c) => c.getClientValue('enable_wealth').pipe(map(v => v !== 'false')),
   },
   {
     type: 'page',
     name: 'Assets',
     icon: 'fas fa-coins',
     route: '/wealth/assets',
+    show: (c) => c.getClientValue('enable_wealth').pipe(map(v => v !== 'false')),
   },
   {
     type: 'page',
     name: 'Trades',
     icon: 'fas fa-receipt',
     route: '/wealth/trades',
+    show: (c) => c.getClientValue('enable_wealth').pipe(map(v => v !== 'false')),
   },
   // {
   //   type: 'page',
@@ -75,6 +82,7 @@ interface MenuItem {
   route: string;
   routerLinkActiveOptions?: { exact: boolean };
   matTooltip?: string;
+  show?: (c: ConfigService) => Observable<boolean>;
 }
 
 interface MenuItemDivider {

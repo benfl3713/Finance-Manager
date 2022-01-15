@@ -24,7 +24,7 @@ export class NavigationComponent {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     private titleService: TitleService,
-    private configService: ConfigService,
+    public configService: ConfigService,
     private notificationService: NotificationService
   ) {}
   @ViewChild(MatSidenav, { static: false }) public sidenav: MatSidenav;
