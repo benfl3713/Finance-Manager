@@ -8,6 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { IsLoadingModule } from '@service-work/is-loading';
 import { NotifierModule } from 'angular-notifier';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './Components/material.module';
@@ -27,7 +28,7 @@ import {
   TransactionDetailsComponent,
   TransactionSetCustomIcon,
 } from './Pages/transaction-details/transaction-details.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe } from '@angular/common';
 import { ComponentModule } from './Components/component.module';
 import { AddAccountComponent } from './Pages/add/add-account/add-account.component';
 import { AddTransactionComponent } from './Pages/add/add-transaction/add-transaction.component';
@@ -41,6 +42,7 @@ import { EditGoalComponent } from './Pages/goals/edit-goal/edit-goal.component';
 import { AddSplitTransactionComponent } from './Pages/add/add-split-transaction/add-split-transaction.component';
 import { AddTransferTransactionComponent } from './Pages/add/add-transfer-transaction/add-transfer-transaction.component';
 import { SettingsComponent } from './Pages/settings/settings.component';
+import { ImageFormatterComponent } from './Components/table-formatters/IconFormatterComponent';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,7 @@ import { SettingsComponent } from './Pages/settings/settings.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AgGridModule.withComponents([ImageFormatterComponent]),
     ReactiveFormsModule,
     FormsModule,
     ServiceModule,
@@ -105,6 +108,7 @@ import { SettingsComponent } from './Pages/settings/settings.component';
       multi: true,
     },
     DatePipe,
+    TitleCasePipe
   ],
   bootstrap: [AppComponent]
 })

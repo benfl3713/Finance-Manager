@@ -10,9 +10,21 @@
 
 <br/>
 
+<mat-form-field>
+  <mat-label>Table Theme</mat-label>
+  <mat-select [(ngModel)]="tableTheme">
+    <mat-option value="ag-theme-alpine">Alpine (Default)</mat-option>
+    <mat-option value="ag-theme-balham">Balham</mat-option>
+    <mat-option value="ag-theme-material">Material</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br />
+
 <mat-checkbox [checked]="enable_wealth == 'true'" (change)="enable_wealth = $event.checked">
   Show Wealth Pages
 </mat-checkbox>
+
 
 <br />
 <button mat-raised-button color="primary" (click)="save()">Save</button>

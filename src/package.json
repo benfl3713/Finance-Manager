@@ -39,6 +39,8 @@
     "@angular/router": "~10.0.14",
     "@angular/service-worker": "~10.0.14",
     "@service-work/is-loading": "^3.0.3",
+    "ag-grid-angular": "^27.3.0",
+    "ag-grid-community": "^27.3.0",
     "angular-notifier": "^6.0.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-colorschemes": "^0.4.0",
