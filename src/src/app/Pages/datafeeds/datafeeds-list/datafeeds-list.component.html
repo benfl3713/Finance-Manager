@@ -24,9 +24,8 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let datafeed">
       <button
-        *ngIf="datafeed.NeedsReconnecting === true"
-        mat-raised-button
-        color="warn"
+        mat-stroked-button
+        [color]="datafeed.NeedsReconnecting ? 'warn' : 'secondary'"
         (click)="reconnectDatafeed(datafeed)"
       >
         Re-Connect

@@ -45,13 +45,15 @@ export class DatafeedsService {
     provider: string,
     vendorID: string,
     accountID: string,
-    externalAccountID: string
+    externalAccountID: string,
+    extraDetails: any
   ): Observable<void> {
     var body = {
       provider,
       vendorID,
       accountID,
       externalAccountID,
+      extraDetails
     };
 
     return this.financeApi.post(

@@ -27,7 +27,7 @@ export class DatafeedTruelayerComponent implements OnInit {
           this.baseUrl +
             '?response_type=code&client_id=' +
             id +
-            '&scope=accounts%20balance%20transactions%20offline_access&redirect_uri=' +
+            '&scope=accounts%20balance%20cards%20transactions%20offline_access&redirect_uri=' +
             this.redirectUrl +
             '&response_mode=form_post&providers=uk-ob-all%20uk-oauth-all%20uk-cs-all%20uk-cs-mock&state=' +
             localStorage.getItem('id_token'),

@@ -84,7 +84,8 @@ export class AccountDetailsExternalAccountsComponent implements OnInit {
         externalAccount.Provider,
         externalAccount.VendorID,
         this.account.ID,
-        externalAccount.AccountID
+        externalAccount.AccountID,
+        externalAccount.ExtraDetails
       )
       .subscribe({
         complete: () => {
